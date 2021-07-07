@@ -1,5 +1,6 @@
 import { theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
 import App from 'next/app'
+import './../scss/general.scss'
 
 function MyApp({ Component, pageProps }) {
     return (
