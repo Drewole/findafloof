@@ -4,10 +4,10 @@ import Link from 'next/link'
 
 const Logo = () => {
     return (
-        <Box border="0" >
+        <Box className="logo" border="0" >
             <Link href="/">
                 <a>
-                    <img src="logo.svg" alt="Site Logo & home link" />
+                    <img src="logo.svg" alt="" />
                 </a>
             </Link>
         </Box>

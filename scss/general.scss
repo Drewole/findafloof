@@ -1,8 +1,29 @@
-@use './variables.scss';
 
+//Colors
+$purple800: #44337a;
+$purple50: #faf5ff;
+$red300: #fc7676;
+
+body {
+    background-color: $purple50;
+}
+.logo {
+    transition: all 150ms ease-in-out;
+    &:hover {
+        transform: translateX(10px);
+        opacity: .85;
+    }
+}
 nav {
     ul {
         list-style: none;
+
+        a {
+            transition: color 150ms ease-in-out;
+            &:hover {
+                color: $red300;
+            }
+        }
     }
 
 }
