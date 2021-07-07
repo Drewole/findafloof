@@ -1,16 +1,25 @@
 import React from 'react'
+import {
+    Box
+} from "@chakra-ui/react"
 import Link from 'next/link'
 import { HeartFill, HouseFill, ShareFill } from 'react-bootstrap-icons'
 
 const Nav = () => {
     return (
-        <nav>
-            <ul>
-                <li><Link href="/" ><a><HouseFill size={32} />Browse</a></Link></li>
-                <li><Link href="/favorites" ><a><HeartFill size={32} />Fav's</a></Link></li>
-                <li><Link href="/share" ><a><ShareFill size={32} />Share</a></Link></li>
-            </ul>
-        </nav>
+        <Box as="nav" separator="">
+            <Box as="ul" d="flex">
+                <Box ml="3" mr="3" as="li" fontSize="12px" color="purple.800">
+                    <Link href="/" ><a><HouseFill size={28} />Browse</a></Link>
+                </Box>
+                <Box ml="3" mr="3" as="li" fontSize="12px" color="purple.800">
+                    <Link href="/favorites" ><a><HeartFill size={28} />Fav's</a></Link>
+                </Box>
+                <Box ml="3" mr="3" as="li" fontSize="12px" color="purple.800">
+                    <Link href="/share" ><a><ShareFill size={28} />Share</a></Link>
+                </Box>
+            </Box>
+        </Box>
     )
 }
 

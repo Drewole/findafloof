@@ -16,7 +16,7 @@ export default function Home() {
         <h1 className="title">
 
         </h1>
-        <Text fontsize="l" mt="2">Etiam congue mattis ultricies. Aliquam ac dolor sit amet odio pretium facilisis sed quis felis. Maecenas porta, enim ut iaculis euismod, metus quam fringilla lacus, ut cursus tellus mi eu nunc.</Text>
+        <Text fontSize="l" mt="2">Etiam congue mattis ultricies. Aliquam ac dolor sit amet odio pretium facilisis sed quis felis. Maecenas porta, enim ut iaculis euismod, metus quam fringilla lacus, ut cursus tellus mi eu nunc.</Text>
       </Box>
       <div className="my-items">
         <Flex direction="column" border="6" borderColor="red.400" p="5" flexWrap="wrap" alignItems="left" justifyContent="center" maxW="800px" mt="10">

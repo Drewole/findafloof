@@ -1,10 +1,15 @@
 import React from 'react'
 import { Box } from "@chakra-ui/react"
+import Link from 'next/link'
 
 const Logo = () => {
     return (
         <Box border="0" >
-            <img src="logo.svg" alt="Site Logo & home link" />
+            <Link href="/">
+                <a>
+                    <img src="logo.svg" alt="Site Logo & home link" />
+                </a>
+            </Link>
         </Box>
     )
 }
