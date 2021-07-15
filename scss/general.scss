@@ -47,3 +47,19 @@ footer {
         margin: 3px 4px 0; 
     }
 }
+.browse {
+
+    table {
+        border-radius: 25px;
+    }
+}
+.current-fluff {
+    outline: 10px solid rgba(255,255,255,0.5);
+    outline-offset: -10px;
+}
+.fav-container {
+    img {
+        outline: 6px solid rgba(255,255,255,0.5);
+        outline-offset: -6px;
+    }
+}

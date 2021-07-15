@@ -1,12 +1,27 @@
 import { theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
+import { useEffect, createContext, useState } from 'react'
 import App from 'next/app'
 import './../scss/general.scss'
 
+const AuthContext = createContext();
+
 function MyApp({ Component, pageProps }) {
+    const [accessToken, setAccessToken] = useState(null);
+
+    useEffect(() => {
+        const fetchAccessToken = async () => {
+            const res = await fetch(`/api/auth-token`);
+            console.log(await res.json());
+        };
+        fetchAccessToken
+    }, []);
+
     return (
         <ChakraProvider theme={theme}>
             <CSSReset />
-            <Component {...pageProps} />
+            <AuthContext.Provider>
+                <Component {...pageProps} />
+            </AuthContext.Provider>
 
         </ChakraProvider>
     )
