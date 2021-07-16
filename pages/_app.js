@@ -12,14 +12,16 @@ function MyApp({ Component, pageProps }) {
         const fetchAccessToken = async () => {
             const res = await fetch(`/api/auth-token`);
             console.log(await res.json());
+            setAccessToken(json.access_token);
         };
-        fetchAccessToken
+        fetchAccessToken();
+        console.log(accessToken);
     }, []);
 
     return (
         <ChakraProvider theme={theme}>
             <CSSReset />
-            <AuthContext.Provider>
+            <AuthContext.Provider value="accessToken">
                 <Component {...pageProps} />
             </AuthContext.Provider>
 
