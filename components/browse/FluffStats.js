@@ -14,7 +14,7 @@ import {
 const FluffStats = () => {
     return (
         <Center>
-            <Table w={{ base: "90vw", md: "70vw", lg: "46vw" }} border="1px" borderRadius={35} borderColor="blackAlpha.200" variant="simple">
+            <Table w={{ base: "90vw", md: "70vw", lg: "46vw" }} borderRadius={25} size="sm" border="1px" borderColor="blackAlpha.200" variant="simple">
                 <TableCaption>Imperial to metric conversion factors</TableCaption>
                 <Thead>
                     <Tr>
@@ -33,10 +33,6 @@ const FluffStats = () => {
                     <Tr>
                         <Td>Breed</Td>
                         <Td>Labrador</Td>
-                    </Tr>
-                    <Tr>
-                        <Td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nisi commodi quis officiis rem dolorem dolorum! Dignissimos itaque deserunt dolor vitae doloribus culpa nihil deleniti repellendus. Maiores cum excepturi nesciunt.</Td>
-
                     </Tr>
                 </Tbody>
             </Table>

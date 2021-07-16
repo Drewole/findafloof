@@ -42,8 +42,8 @@ const MainFluffImage = () => {
                 borderRadius="50%"
             ><XLg size={20} color="red.900" /></Button>
             <MotionBox
-                maxWidth={100}
                 drag="x"
+                minHeight={370}
                 dragConstraints={{ left: 0, right: 0 }}
                 whileDrag={{ scale: .97 }}
                 onDragEnd={(e) => {
@@ -59,7 +59,7 @@ const MainFluffImage = () => {
                     onClick={() => { console.log('clicked'); }}
                     src={`/placeholder/mainImage.jpg`}
                     width={320}
-                    height={370}
+                    height="auto"
                     position="relative"
                     zIndex={1}
                     boxShadow="xl"

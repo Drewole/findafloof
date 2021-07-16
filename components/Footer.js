@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import React from 'react'
 import { HeartFill } from 'react-bootstrap-icons'
-import Link from 'next/link'
+
 const Footer = () => {
     return (
         <Box width="100vw" as="footer" d="flex" >

@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import FluffStats from '../components/browse/FluffStats'
 import CurrentFavs from '../components/browse/CurrentFavs'
 import MainFluffImage from '../components/browse/MainFluffImage'
+import Name from '../components/browse/Name'
 
 export default function Home() {
 
@@ -16,11 +17,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Box className="browse" h="auto">
-        <MainFluffImage />
-        <FluffStats />
-        <CurrentFavs />
-      </Box>
+      <Container p="5" maxW="lg" centerContent className="fav-container">
+        <Box className="browse" h="auto">
+          <MainFluffImage />
+          <Name animalName="Buddy" animalGender="male" />
+          <FluffStats />
+          <CurrentFavs />
+        </Box>
+      </Container>
+
       <Footer />
     </Box>
   )
