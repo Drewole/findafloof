@@ -1,6 +1,6 @@
 import React from 'react'
-import { chakra, Center, Image, Box, Button } from '@chakra-ui/react'
-import { CheckLg, GenderMale, XLg } from 'react-bootstrap-icons'
+import { Center, Image, Box, Button } from '@chakra-ui/react'
+import { CheckLg, XLg } from 'react-bootstrap-icons'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 
 const MotionBox = motion(Box)
@@ -26,14 +26,12 @@ const MainFluffImage = () => {
         <Center>
             <Button
                 colorScheme="red"
-                ml="-25px"
-                position="relative"
+                left={25}
                 backgroundColor="red.300"
-                pl={4}
-                pr={4}
-                pt={6}
-                pb={6}
-                zIndex={0}
+                p={6}
+                height={50}
+                width={50}
+                zIndex={1}
                 borderStyle="solid"
                 _hover={{ cursor: 'pointer' }}
                 position="relative"
@@ -44,6 +42,7 @@ const MainFluffImage = () => {
             <MotionBox
                 drag="x"
                 minHeight={370}
+                minWidth={290}
                 dragConstraints={{ left: 0, right: 0 }}
                 whileDrag={{ scale: .97 }}
                 onDragEnd={(e) => {
@@ -61,7 +60,7 @@ const MainFluffImage = () => {
                     width={320}
                     height="auto"
                     position="relative"
-                    zIndex={1}
+                    zIndex={0}
                     boxShadow="xl"
                     maxWidth="320px"
                     transition="all 0.2s"
@@ -72,25 +71,24 @@ const MainFluffImage = () => {
                         transform: 'scale(1.1)'
                     }}
                     mb={8}
-                    w="auto"
-                    h="auto"
+                    w="100%"
+                    borderRadius={35}
                 />
             </MotionBox>
             <Button
                 colorScheme="green"
-                position="relative"
                 backgroundColor="green.300"
-                pl={4}
-                pr={4}
-                pt={6}
-                pb={6}
+                p={6}
+                right={25}
                 _hover={{ cursor: 'pointer' }}
-                zIndex={0}
+                zIndex={1}
+                height={50}
+                width={50}
                 borderStyle="solid"
                 position="relative"
                 borderColor="white"
                 borderWidth={4}
-                borderRadius="50%"><CheckLg color="green.800" size={20} /></Button>
+                borderRadius="50%"><CheckLg color="green" size={20} /></Button>
         </Center >
     )
 }

@@ -4,14 +4,14 @@ import { GenderMale, GenderFemale } from 'react-bootstrap-icons'
 
 const Name = () => {
     return (
-        <Flex flexDirection="row">
-            <h2>Buddy</h2>
-            <Box>
-                <GenderMale size={20} color="blue.700" /> <Box textTransform="uppercase" as="span">Male</Box>
-            </Box>
-            <Box>
-                <GenderFemale size={20} color="red.600" /> <Box textTransform="uppercase" as="span">Female</Box>
-            </Box>
+        <Flex alignItems="center" flexDirection="column">
+            <Box color="purple.700" fontSize="5xl" as="h2">Buddy</Box>
+            <Flex className="male" flexDirection="row">
+                <GenderMale size={30} color="blue.700" /> <Box textTransform="uppercase" as="span">Male</Box>
+            </Flex>
+            <Flex className="female" flexDirection="row">
+                <GenderFemale size={30} color="red.600" /> <Box textTransform="uppercase" as="span">Female</Box>
+            </Flex>
         </Flex>
     )
 }

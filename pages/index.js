@@ -17,14 +17,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <Container p="5" maxW="lg" centerContent className="fav-container">
-        <Box className="browse" h="auto">
-          <MainFluffImage />
-          <Name animalName="Buddy" animalGender="male" />
-          <FluffStats />
-          <CurrentFavs />
-        </Box>
-      </Container>
+
+      <Box className="browse" h="auto">
+        <MainFluffImage />
+        <Name animalName="Buddy" animalGender="male" />
+        <FluffStats />
+        <CurrentFavs />
+      </Box>
 
       <Footer />
     </Box>

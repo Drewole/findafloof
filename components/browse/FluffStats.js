@@ -23,15 +23,15 @@ const FluffStats = () => {
                 </Thead>
                 <Tbody>
                     <Tr>
-                        <Td>Age</Td>
-                        <Td isNumeric>11 years</Td>
+                        <Td fontWeight="600">Age</Td>
+                        <Td>11 years</Td>
                     </Tr>
                     <Tr>
-                        <Td>Weight</Td>
+                        <Td fontWeight="600">Weight</Td>
                         <Td>12 Pounds</Td>
                     </Tr>
                     <Tr>
-                        <Td>Breed</Td>
+                        <Td fontWeight="600">Breed</Td>
                         <Td>Labrador</Td>
                     </Tr>
                 </Tbody>
