@@ -1,31 +1,30 @@
-import { theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
+import { chakra, theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
 import { useEffect, createContext, useState } from 'react'
-import App from 'next/app'
+import MyApp from 'next/app'
 import './../scss/general.scss'
 
-const AuthContext = createContext();
+function App({ Component, pageProps }) {
+    // const [accessToken, setAccessToken] = useState(null);
 
-function MyApp({ Component, pageProps }) {
-    const [accessToken, setAccessToken] = useState(null);
-
-    useEffect(() => {
-        const fetchAccessToken = async () => {
-            const res = await fetch(`/api/auth-token`);
-            console.log(await res.json());
-            setAccessToken(json.access_token);
-        };
-        fetchAccessToken();
-        console.log(accessToken);
-    }, []);
+    // useEffect(() => {
+    //     const fetchAccessToken = async () => {
+    //         const res = await fetch(`/api/oauth-token`);
+    //         const json = await res.json();
+    //         console.log(await res.json());
+    //         setAccessToken(json.access_token);
+    //     };
+    //     fetchAccessToken();
+    //     console.log(accessToken);
+    // }, []);
 
     return (
         <ChakraProvider theme={theme}>
             <CSSReset />
-            <AuthContext.Provider value="accessToken">
-                <Component {...pageProps} />
-            </AuthContext.Provider>
+
+            <Component {...pageProps} />
 
         </ChakraProvider>
+
     )
 }
 

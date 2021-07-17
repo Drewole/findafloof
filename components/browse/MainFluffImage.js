@@ -33,7 +33,10 @@ const MainFluffImage = () => {
                 width={50}
                 zIndex={1}
                 borderStyle="solid"
-                _hover={{ cursor: 'pointer' }}
+                _hover={{
+                    cursor: 'pointer',
+                    transform: 'scale(1.15)'
+                }}
                 position="relative"
                 borderColor="white"
                 borderWidth={4}
@@ -54,6 +57,7 @@ const MainFluffImage = () => {
                 <Image
                     className="current-fluff"
                     userSelect="none"
+                    objectFit="cover"
                     maxWidth={100}
                     onClick={() => { console.log('clicked'); }}
                     src={`/placeholder/mainImage.jpg`}
@@ -73,6 +77,7 @@ const MainFluffImage = () => {
                     mb={8}
                     w="100%"
                     borderRadius={35}
+
                 />
             </MotionBox>
             <Button
@@ -85,6 +90,10 @@ const MainFluffImage = () => {
                 height={50}
                 width={50}
                 borderStyle="solid"
+                _hover={{
+                    cursor: 'pointer',
+                    transform: 'scale(1.15)'
+                }}
                 position="relative"
                 borderColor="white"
                 borderWidth={4}
