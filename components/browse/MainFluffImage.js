@@ -1,5 +1,5 @@
 import React from 'react'
-import { Center, Image, Box, Button } from '@chakra-ui/react'
+import { Center, Image, Box, Button, Flex } from '@chakra-ui/react'
 import { CheckLg, XLg } from 'react-bootstrap-icons'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 
@@ -22,7 +22,6 @@ const MainFluffImage = () => {
     }
 
     return (
-
         <Center>
             <Button
                 colorScheme="red"
@@ -41,7 +40,11 @@ const MainFluffImage = () => {
                 borderColor="white"
                 borderWidth={4}
                 borderRadius="50%"
-            ><XLg size={20} color="red.900" /></Button>
+            >
+                <Box as="span" position="relative" zIndex="2">
+                    <XLg size={20} color="DarkRed" />
+                </Box>
+            </Button>
             <MotionBox
                 drag="x"
                 minHeight={370}
@@ -50,7 +53,7 @@ const MainFluffImage = () => {
                 whileDrag={{ scale: .97 }}
                 onDragEnd={(e) => {
                     console.log(e, "dragEnd Event")
-                    checkWhichSide(e.pageX);
+                    checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth);
                 }}
 
             >
@@ -97,8 +100,12 @@ const MainFluffImage = () => {
                 position="relative"
                 borderColor="white"
                 borderWidth={4}
-                borderRadius="50%"><CheckLg color="green" size={20} /></Button>
-        </Center >
+                borderRadius="50%">
+                <Box as="span" position="relative" zIndex="2">
+                    <CheckLg color="DarkGreen" size={20} />
+                </Box>
+            </Button>
+        </Center>
     )
 }
 
