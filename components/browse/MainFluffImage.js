@@ -7,8 +7,8 @@ const MotionBox = motion(Box)
 const MainFluffImage = () => {
     //TODO: Need to get the image with next js and style it with chakra
 
-    const middleOfScreenX = (width) => {
-        return width / 2
+    const middleOfScreenX = (height) => {
+        return height / 2
     }
     const checkWhichSide = (pos, screen) => {
         if (pos > middleOfScreenX(screen)) {
@@ -22,7 +22,7 @@ const MainFluffImage = () => {
     }
 
     return (
-        <Center>
+        <Center mt={10}>
             <Button
                 colorScheme="red"
                 left={25}
@@ -52,7 +52,7 @@ const MainFluffImage = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 whileDrag={{ scale: .97 }}
                 onDragEnd={(e) => {
-                    console.log(e, "dragEnd Event")
+
                     checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth);
                 }}
 

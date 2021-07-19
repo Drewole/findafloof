@@ -8,7 +8,7 @@ const CurrentFavs = () => {
     }
     return (
 
-        <Wrap alignItems="center" p="4" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "90vw", md: "80vw", lg: "66vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
+        <Wrap mb={5} alignItems="center" p="5" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "90vw", md: "80vw", lg: "66vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
             <WrapItem >
                 <Image
                     layout="intrinsic"
