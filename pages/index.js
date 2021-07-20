@@ -6,27 +6,29 @@ import FluffStats from '../components/browse/FluffStats'
 import CurrentFavs from '../components/browse/CurrentFavs'
 import MainFluffImage from '../components/browse/MainFluffImage'
 import Name from '../components/browse/Name'
-import { useState, useEffect, useContext } from 'react'
-import { AuthContext } from '../pages/_app'
+import React, { useState, useEffect, useContext } from 'react'
+import { TokenContext } from './_app'
+
 export default function Home() {
 
-  // const [results, setResults] = useState(null);
-  // const accessToken = useContext(AuthContext);
+  const [results, setResults] = useState(null);
+  const accessToken = useContext(TokenContext);
 
-  // useEffect(() => {
-  //   if (accessToken === null) return;
-  //   const getPets = async () => {
-  //     const results = await fetch('https://api.petfinder.com/v2/animals', {
-  //       headers: {
-  //         Authorization: `Bearer ${accessToken}`,
-  //       },
-  //     })
-  //     const json = await results.json();
-  //     setResults(json.animals);
-  //   }
-  //   getPets();
-  // }, [accessToken]);
-  // if (results === null) return `<h1>Loading...</h1>`;
+  useEffect(() => {
+    if (accessToken === null) return;
+    const getPets = async () => {
+      const results = await fetch('https://api.petfinder.com/v2/animals?location=55437', {
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+        },
+      })
+      const json = await results.json();
+      setResults(json.animals);
+      console.log(await results, "Results")
+    }
+    getPets();
+  }, [accessToken]);
+  if (results === null) return `<h1>Loading...</h1>`;
 
   return (
 
