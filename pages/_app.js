@@ -15,7 +15,6 @@ function App({ Component, pageProps }) {
             setAccessToken(json);
         };
         fetchAccessToken();
-        console.log(accessToken, "Access Token")
     }, []);
 
     return (

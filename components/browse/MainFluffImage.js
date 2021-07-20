@@ -13,11 +13,10 @@ const MainFluffImage = () => {
     const checkWhichSide = (pos, screen) => {
         if (pos > middleOfScreenX(screen)) {
             console.log("This was dragged right", pos)
-            return true
 
         } else if (pos < middleOfScreenX(screen)) {
             console.log("This was dragged left", pos)
-            return false
+
         }
     }
 
@@ -52,7 +51,6 @@ const MainFluffImage = () => {
                 dragConstraints={{ left: 0, right: 0 }}
                 whileDrag={{ scale: .97 }}
                 onDragEnd={(e) => {
-
                     checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth);
                 }}
 
