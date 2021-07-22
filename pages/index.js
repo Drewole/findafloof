@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react'
 import Head from 'next/head'
 import Header from '../components/Header'
+import Loading from '../components/Loading'
 import Footer from '../components/Footer'
 import FluffStats from '../components/browse/FluffStats'
 import CurrentFavs from '../components/browse/CurrentFavs'
@@ -18,18 +19,21 @@ export default function Home() {
   useEffect(() => {
     if (accessToken === null) return;
     const getPets = async () => {
-      const results = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100', {
+      const results = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
         headers: {
           Authorization: `Bearer ${accessToken.access_token}`,
         },
       })
       const json = await results.json();
-      setResults(json.animals);
+      const filtered = await json.animals.filter(animal => animal.photos.length > 0);
+      setResults(filtered);
+      const current = await filtered.splice[0]
+      setCurrentSelection(current);
       console.log(await json.animals, "Results")
     }
     getPets();
   }, [accessToken]);
-  if (results === null) return `<h1>Loading...</h1>`;
+  if (results === null) return <Loading />;
 
   return (
 
@@ -41,10 +45,10 @@ export default function Home() {
       <Header />
 
       <Box className="browse" h="auto">
-        <MainFluffImage />
+        <MainFluffImage props={currentSelection} />
         <Flex flexDirection="column" alignItems="center">
-          <Name animalName="Buddy" animalGender="male" />
-          <FluffStats />
+          <Name props={currentSelection} />
+          <FluffStats props={currentSelection} />
           <CurrentFavs />
         </Flex>
       </Box>

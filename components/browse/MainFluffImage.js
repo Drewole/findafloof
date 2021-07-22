@@ -60,7 +60,7 @@ const MainFluffImage = () => {
                     userSelect="none"
                     objectFit="cover"
                     maxWidth={100}
-                    onClick={() => { console.log('clicked'); }}
+                    // onClick={() => { console.log('clicked'); }}
                     src={`/placeholder/mainImage.jpg`}
                     width={320}
                     height="auto"
@@ -70,11 +70,10 @@ const MainFluffImage = () => {
                     maxWidth="320px"
                     transition="all 0.2s"
                     transform="scale(1)"
-                    _hover={{
-                        cursor: 'pointer',
-                        opacity: 0.9,
-                        transform: 'scale(1.1)'
-                    }}
+                    // _hover={{
+                    //     cursor: 'pointer',
+                    //     transform: 'scale(1.04)'
+                    // }}
                     mb={8}
                     w="100%"
                     borderRadius={35}

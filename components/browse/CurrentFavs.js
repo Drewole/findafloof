@@ -13,20 +13,20 @@ const CurrentFavs = () => {
                 <Image
                     layout="intrinsic"
                     src="/placeholder/Rectangle.png" // Route of the image file
-                    height={150} // Desired size with correct aspect ratio
-                    width={150} // Desired size with correct aspect ratio
+                    height={175} // Desired size with correct aspect ratio
+                    width={175} // Desired size with correct aspect ratio
                     alt="Your Name"
                 />
                 <Button onClick={() => { console.log('clicked') }} colorScheme="blackAlpha" backgroundColor="blackAlpha.50" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0">
                     <XCircleFill size={16} />
                 </Button>
             </WrapItem>
-            <WrapItem >
+            <WrapItem borderRadius={8} >
                 <Image
                     layout="intrinsic"
                     src="/placeholder/Rectangle1.png" // Route of the image file
-                    height={150} // Desired size with correct aspect ratio
-                    width={150} // Desired size with correct aspect ratio
+                    height={175} // Desired size with correct aspect ratio
+                    width={175} // Desired size with correct aspect ratio
                     alt="Your Name"
 
                 />
@@ -39,8 +39,8 @@ const CurrentFavs = () => {
 
                     layout="intrinsic"
                     src="/placeholder/Rectangle2.png" // Route of the image file
-                    height={150} // Desired size with correct aspect ratio
-                    width={150} // Desired size with correct aspect ratio
+                    height={175} // Desired size with correct aspect ratio
+                    width={175} // Desired size with correct aspect ratio
                     alt="Your Name"
                 />
                 <Button colorScheme="blackAlpha" backgroundColor="blackAlpha.50" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0">
@@ -52,8 +52,8 @@ const CurrentFavs = () => {
 
                     layout="intrinsic"
                     src="/placeholder/Rectangle3.png" // Route of the image file
-                    height={150} // Desired size with correct aspect ratio
-                    width={150} // Desired size with correct aspect ratio
+                    height={175} // Desired size with correct aspect ratio
+                    width={175} // Desired size with correct aspect ratio
                     alt="Your Name"
                 />
                 <Button colorScheme="blackAlpha" backgroundColor="blackAlpha.50" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0">
