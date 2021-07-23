@@ -26,7 +26,7 @@ export default function Home() {
       const json = await apiResults.json();
       const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
       setResults(filtered);
-      console.log(results[0])
+      console.log(filtered[0])
     }
     getPets();
   }, [accessToken]);

@@ -63,3 +63,11 @@ footer {
         background: linear-gradient(to bottom, $purple800 0%, $purple50 80%);
     }
 }
+.chakra-collapse::after {
+    content: ' ';
+    display: block;
+    width: 100%;
+    background: linear-gradient(180deg, $purple50 0%, $purple50 83%);
+    position: relative;
+    top: 20%;
+}

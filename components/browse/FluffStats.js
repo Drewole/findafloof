@@ -12,7 +12,7 @@ import {
     Button,
     Collapse,
 } from "@chakra-ui/react"
-import { Link45deg, Search } from 'react-bootstrap-icons'
+import { Search } from 'react-bootstrap-icons'
 
 const FluffStats = (props) => {
 
@@ -25,8 +25,8 @@ const FluffStats = (props) => {
     return (
 
         <>
-            <Collapse border="0px" startingHeight={220} in={show}>
-                <Table overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "46vw" }} borderRadius="2xl" size="md" variant="simple">
+            <Collapse border="0px" startingHeight={220} className={show} in={show}>
+                <Table overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "54vw" }} borderRadius="2xl" size="md" variant="simple">
                     <TableCaption fontSize="md" textAlign="left" mb={10}>{props.props.description} <Box as="span"><Link color="pink.700" fontWeight="extrabold" textTransform="uppercase" href={props.props.url} isExternal>
                         View More
                     </Link></Box></TableCaption>

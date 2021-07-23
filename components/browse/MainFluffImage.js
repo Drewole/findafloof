@@ -20,8 +20,6 @@ const MainFluffImage = (props) => {
 
         }
     }
-    const passOnAnimal = () => { }
-    const addToFavs = () => { }
 
     return (
         <>
@@ -108,7 +106,7 @@ const MainFluffImage = (props) => {
                 </Button>
             </Center>
             <MobileView>
-                <Center mt={10}><img src="swipe.svg" alt="" /></Center>
+                <Center mt={-5} mb={5}><img src="swipe.svg" alt="On mobile, swipe main image left to pass, right to favorite" /></Center>
             </MobileView>
         </>
     )
