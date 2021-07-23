@@ -8,72 +8,71 @@ import {
     Th,
     Td,
     TableCaption,
+    Link,
     Button,
     Collapse,
 } from "@chakra-ui/react"
-import { Search } from 'react-bootstrap-icons'
+import { Link45deg, Search } from 'react-bootstrap-icons'
 
 const FluffStats = (props) => {
 
     const [show, setShow] = React.useState(false)
     const handleToggle = () => setShow(!show)
 
-    // const children = (environment.children === 1) ? "Yes" : "No"
-    // const cats = (environment.cats === 1) ? "Yes" : "No"
-    // const dogs = (environment.dogs === 1) ? "Yes" : "No"
+    const children = (props.props.environment.children === true) ? "Yes" : "No"
+    const cats = (props.props.environment.cats === true) ? "Yes" : "No"
+    const dogs = (props.props.environment.dogs === true) ? "Yes" : "No"
     return (
 
         <>
-            <Collapse startingHeight={200} in={show}>
-                <Table mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "46vw" }} borderRadius="2xl" size="md" border="1px" borderColor="blackAlpha.200" variant="simple">
-                    <TableCaption fontSize="md" textAlign="left" mb={10}>{props.description}</TableCaption>
-                    <Thead>
+            <Collapse border="0px" startingHeight={220} in={show}>
+                <Table overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "46vw" }} borderRadius="2xl" size="md" variant="simple">
+                    <TableCaption fontSize="md" textAlign="left" mb={10}>{props.props.description} <Box as="span"><Link color="pink.700" fontWeight="extrabold" textTransform="uppercase" href={props.props.url} isExternal>
+                        View More
+                    </Link></Box></TableCaption>
+                    <Thead >
                         <Tr backgroundColor="blackAlpha.100">
-                            <Th>Quick Overview</Th>
+                            <Th>Overview</Th>
                             <Th></Th>
                         </Tr>
                     </Thead>
                     <Tbody>
                         <Tr>
                             <Td fontWeight="600">Type</Td>
-                            <Td>{props.type}</Td>
+                            <Td>{props.props.type}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Age</Td>
-                            <Td>{props.age}</Td>
+                            <Td>{props.props.age}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Gender</Td>
-                            <Td>{props.gender}</Td>
+                            <Td>{props.props.gender}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Size</Td>
-                            <Td>{props.size}</Td>
+                            <Td>{props.props.size}</Td>
                         </Tr>
 
                         <Tr>
-                            <Td fontWeight="600">Distance</Td>
-                            <Td>{props.distance}</Td>
+                            <Td fontWeight="600">Distance (Miles)</Td>
+                            <Td>{props.props.distance}</Td>
                         </Tr>
-                        {/* <Tr>
+                        <Tr>
                             <Td fontWeight="600">Good with Children</Td>
-                            <Td>{props.children}</Td>
+                            <Td>{children}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Good with Cats</Td>
-                            <Td>{props.cats}</Td>
+                            <Td>{cats}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Good with Dogs</Td>
-                            <Td>{props.dogs}</Td>
-                        </Tr> */}
-                        <Tr>
-                            <Td fontWeight="600">Petfinder ID</Td>
-                            <Td>{props.id}</Td>
+                            <Td>{dogs}</Td>
                         </Tr>
                         <Tr>
-                            <Td fontWeight="600">Petfinder Link</Td>
-                            <Td>View on <a href={props.url}>Petfinder.com</a></Td>
+                            <Td fontWeight="600">Petfinder ID</Td>
+                            <Td>{props.props.id}</Td>
                         </Tr>
                     </Tbody>
                 </Table>

@@ -13,23 +13,20 @@ import { TokenContext } from './_app'
 export default function Home() {
 
   const [results, setResults] = useState(null);
-  const [currentSelection, setCurrentSelection] = useState(null);
   const accessToken = useContext(TokenContext);
 
   useEffect(() => {
     if (accessToken === null) return;
     const getPets = async () => {
-      const results = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
+      const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
         headers: {
           Authorization: `Bearer ${accessToken.access_token}`,
         },
       })
-      const json = await results.json();
-      const filtered = await json.animals.filter(animal => animal.photos.length > 0);
+      const json = await apiResults.json();
+      const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
       setResults(filtered);
-      const current = await filtered.splice[0]
-      setCurrentSelection(current);
-      console.log(await json.animals, "Results")
+      console.log(results[0])
     }
     getPets();
   }, [accessToken]);
@@ -40,15 +37,15 @@ export default function Home() {
     <Box backgroundColor="purple.50" p="2" height="100%" className="container">
       <Head as="h1" size="2xl" mb="2">
         <title>Find a Floof</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logoDog.svg" />
       </Head>
       <Header />
 
       <Box className="browse" h="auto">
-        <MainFluffImage props={currentSelection} />
+        <MainFluffImage props={results[0]} />
         <Flex flexDirection="column" alignItems="center">
-          <Name props={currentSelection} />
-          <FluffStats props={currentSelection} />
+          <Name props={results[0]} />
+          <FluffStats props={results[0]} />
           <CurrentFavs />
         </Flex>
       </Box>
