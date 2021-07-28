@@ -17,6 +17,7 @@ export default function Home() {
 
   useEffect(() => {
     if (accessToken === null) return;
+    console.log(accessToken)
     const getPets = async () => {
       const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
         headers: {

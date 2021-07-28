@@ -64,13 +64,31 @@ footer {
         background: linear-gradient(to bottom, $purple800 0%, $purple50 80%);
     }
 }
-.chakra-collapse::after {
-    content: ' ';
-    display: block;
+
+.chakra-collapse {
+    .gradient {
+    background: linear-gradient(0deg, rgba($purple50, 1) 0%, rgba($purple50, 0) 83%);
+    height: 0px;
     width: 100%;
-    background: linear-gradient(180deg, $purple50 0%, $purple50 83%);
+    display: block;
     position: relative;
-    top: 20%;
+    z-index: 2;
+    margin-top: -45px;
+}
+}
+.chakra-collapse.closed {
+    position: relative;
+    margin-bottom: 0;
+    .gradient {height: 0px;}
+}
+.gradient {
+    background: linear-gradient(0deg, rgba($purple50, 1) 0%, rgba($purple50, 0) 95%);
+    height: 45px;
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2;
+    margin-top: -41px;
 }
 
 /* 
