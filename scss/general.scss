@@ -2,12 +2,13 @@
 //Colors
 $purple800: #44337a;
 $purple50: #faf5ff;
+$purple100: #ded0eb;
 $red300: #fc7676;
 $pink500: #d5408c;
 $pink900: #521c42;
 
 body {
-    background-color: $purple50;
+    background-color: $purple100;
 }
 .logo {
     transition: all 150ms ease-in-out;
@@ -70,4 +71,61 @@ footer {
     background: linear-gradient(180deg, $purple50 0%, $purple50 83%);
     position: relative;
     top: 20%;
+}
+
+/* 
+////// fancy loader
+*/
+
+.loader{
+	position: absolute;
+	top: 25%;
+	left: 50%;
+	transform: rotate(90deg) translate(50%, 0%);
+	font-size: 50px;
+	width: 1em;
+	height: 3em;
+	color: #d31145;
+
+	.paw{
+		width: .5em;
+		height: .5em;
+		animation: 2050ms pawAnimation ease-in-out infinite;
+		opacity: 0;
+		
+		svg{
+			width: 100%;
+			height: 100%;
+		}
+		
+		.icon{
+			fill: currentColor;
+		}
+
+		&:nth-child(odd){
+			transform: rotate(-10deg);
+		}
+
+		&:nth-child(even){
+			transform: rotate(10deg) translate(125%, 0);
+		}
+
+		@for $i from 1 through 6{
+            &:nth-child(#{$i}){
+            	animation-delay: #{ (($i * -1)+6)*0.25 }s;
+            }
+        }
+	}
+}
+
+@keyframes pawAnimation {
+	0%{
+		opacity: 1;
+	}
+	50%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 0;
+	}
 }

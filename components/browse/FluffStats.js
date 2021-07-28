@@ -16,6 +16,8 @@ import { Search } from 'react-bootstrap-icons'
 
 const FluffStats = (props) => {
 
+    // Google maps url for reference https://www.google.com/maps/place/704+W+22nd+St,+Minneapolis,+MN+55405
+
     const [show, setShow] = React.useState(false)
     const handleToggle = () => setShow(!show)
 
@@ -27,9 +29,7 @@ const FluffStats = (props) => {
         <>
             <Collapse border="0px" startingHeight={220} className={show} in={show}>
                 <Table overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "54vw" }} borderRadius="2xl" size="md" variant="simple">
-                    <TableCaption fontSize="md" textAlign="left" mb={10}>{props.props.description} <Box as="span"><Link color="pink.700" fontWeight="extrabold" textTransform="uppercase" href={props.props.url} isExternal>
-                        View More
-                    </Link></Box></TableCaption>
+                    <TableCaption fontSize="md" textAlign="left" mb={10}>{props.props.description}</TableCaption>
                     <Thead >
                         <Tr backgroundColor="blackAlpha.100">
                             <Th>Overview</Th>
@@ -72,7 +72,11 @@ const FluffStats = (props) => {
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Petfinder ID</Td>
-                            <Td>{props.props.id}</Td>
+                            <Td>
+                                <Box as="span"><Link color="pink.700" fontWeight="extrabold" textTransform="uppercase" href={props.props.url} isExternal>
+                                    {props.props.id}
+                                </Link></Box>
+                            </Td>
                         </Tr>
                     </Tbody>
                 </Table>
