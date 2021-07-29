@@ -8,16 +8,19 @@ const MotionBox = motion(Box)
 const MainFluffImage = (props) => {
     //TODO: Need to get the image with next js and style it with chakra
 
+    // Just calculating the approximate middle of the screen
     const middleOfScreenX = (height) => {
         return height / 2
     }
+    // Checking which side of the screen the user drags the image to
     const checkWhichSide = (pos, screen) => {
         if (pos > middleOfScreenX(screen)) {
             console.log("This was dragged right", pos)
+            return "right"
 
         } else if (pos < middleOfScreenX(screen)) {
             console.log("This was dragged left", pos)
-
+            return "left"
         }
     }
 
@@ -26,24 +29,25 @@ const MainFluffImage = (props) => {
             <Center mt={10}>
                 <Button
                     colorScheme="red"
-                    left={25}
+                    left={35}
                     backgroundColor="red.300"
                     p={6}
-                    height={50}
-                    width={50}
+                    height={70}
+                    width={70}
                     zIndex={1}
                     borderStyle="solid"
                     _hover={{
                         cursor: 'pointer',
-                        transform: 'scale(1.15)'
+                        transform: 'scale(1.25)'
                     }}
                     position="relative"
                     borderColor="white"
                     borderWidth={4}
                     borderRadius="50%"
+                    onClick={props.handleClickLeft}
                 >
                     <Box as="span" position="relative" zIndex="2">
-                        <XLg size={20} color="DarkRed" />
+                        <XLg size={30} color="DarkRed" />
                     </Box>
                 </Button>
                 <MotionBox
@@ -53,7 +57,8 @@ const MainFluffImage = (props) => {
                     dragConstraints={{ left: 0, right: 0 }}
                     whileDrag={{ scale: .97 }}
                     onDragEnd={(e) => {
-                        checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth);
+                        checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth)
+
                     }}
 
                 >
@@ -63,7 +68,7 @@ const MainFluffImage = (props) => {
                         objectFit="cover"
                         maxWidth={100}
                         // onClick={() => { console.log('clicked'); }}
-                        src={props.props.primary_photo_cropped.full}
+                        src={props.current.primary_photo_cropped.full}
                         width={320}
                         height="auto"
                         position="relative"
@@ -86,22 +91,23 @@ const MainFluffImage = (props) => {
                     colorScheme="green"
                     backgroundColor="green.300"
                     p={6}
-                    right={25}
+                    right={35}
                     _hover={{ cursor: 'pointer' }}
                     zIndex={1}
-                    height={50}
-                    width={50}
+                    height={70}
+                    width={70}
+                    onClick={props.handleClickRight}
                     borderStyle="solid"
                     _hover={{
                         cursor: 'pointer',
-                        transform: 'scale(1.15)'
+                        transform: 'scale(1.25)'
                     }}
                     position="relative"
                     borderColor="white"
                     borderWidth={4}
                     borderRadius="50%">
                     <Box as="span" position="relative" zIndex="2">
-                        <CheckLg color="DarkGreen" size={20} />
+                        <CheckLg color="DarkGreen" size={30} />
                     </Box>
                 </Button>
             </Center>

@@ -20,27 +20,27 @@ const FluffStats = (props) => {
             return
         } else { return str.replace(/\s/g, '+') }
     }
-    const address1 = replaceWithPlus(props.props.contact.address.address1) + ',';
-    const address2 = replaceWithPlus(props.props.contact.address.address2) + ',';
-    const city = replaceWithPlus(props.props.contact.address.city);
-    const state = replaceWithPlus(props.props.contact.address.state);
-    const zip = replaceWithPlus(props.props.contact.address.postcode);
+    const address1 = replaceWithPlus(props.current.contact.address.address1) + ',';
+    const address2 = replaceWithPlus(props.current.contact.address.address2) + ',';
+    const city = replaceWithPlus(props.current.contact.address.city);
+    const state = replaceWithPlus(props.current.contact.address.state);
+    const zip = replaceWithPlus(props.current.contact.address.postcode);
 
     const petLocation = `https://www.google.com/maps/place/${address1}+${address2}+${city},+${state}+${zip}`
 
     const [show, setShow] = React.useState(false)
     const handleToggle = () => setShow(!show)
 
-    const children = (props.props.environment.children === true) ? "Yes" : "No"
-    const cats = (props.props.environment.cats === true) ? "Yes" : "No"
-    const dogs = (props.props.environment.dogs === true) ? "Yes" : "No"
-    const distanceRounded = Math.round(props.props.distance * 10) / 10
+    const children = (props.current.environment.children === true) ? "Yes" : "No"
+    const cats = (props.current.environment.cats === true) ? "Yes" : "No"
+    const dogs = (props.current.environment.dogs === true) ? "Yes" : "No"
+    const distanceRounded = Math.round(props.current.distance * 10) / 10
     return (
 
         <>
             <Collapse border="0px" startingHeight={250} className={show == true ? "" : "closed"} in={show}>
                 <Table boxShadow="md" overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "54vw" }} borderRadius="2xl" size="md" variant="simple">
-                    <TableCaption fontSize="md" textAlign="left">{props.props.description}</TableCaption>
+                    <TableCaption fontSize="md" textAlign="left">{props.current.description}</TableCaption>
                     <Thead >
                         <Tr backgroundColor="purple.100">
                             <Th color="purple.700">Overview</Th>
@@ -50,31 +50,31 @@ const FluffStats = (props) => {
                     <Tbody>
                         <Tr>
                             <Td fontWeight="600">Type</Td>
-                            <Td>{props.props.type}</Td>
+                            <Td>{props.current.type}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Primary Breed</Td>
-                            <Td>{(props.props.breeds.primary !== null) ? props.props.breeds.primary : ""}</Td>
+                            <Td>{(props.current.breeds.primary !== null) ? props.current.breeds.primary : ""}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Secondary Breed</Td>
-                            <Td>{(props.props.breeds.secondary !== null) ? props.props.breeds.secondary : "Not Specified"}</Td>
+                            <Td>{(props.current.breeds.secondary !== null) ? props.current.breeds.secondary : "Not Specified"}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Mixed Breed</Td>
-                            <Td>{(props.props.breeds.mixed === true) ? "Yes" : "No"}</Td>
+                            <Td>{(props.current.breeds.mixed === true) ? "Yes" : "No"}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Age</Td>
-                            <Td>{props.props.age}</Td>
+                            <Td>{props.current.age}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Gender</Td>
-                            <Td>{props.props.gender}</Td>
+                            <Td>{props.current.gender}</Td>
                         </Tr>
                         <Tr>
                             <Td fontWeight="600">Size</Td>
-                            <Td>{props.props.size}</Td>
+                            <Td>{props.current.size}</Td>
                         </Tr>
 
                         <Tr>
@@ -98,8 +98,8 @@ const FluffStats = (props) => {
                         <Tr>
                             <Td fontWeight="600">Petfinder ID</Td>
                             <Td>
-                                <Box as="span"><Link isExternal color="pink.700" fontWeight="extrabold" textTransform="uppercase" href={props.props.url} isExternal>
-                                    {props.props.id}
+                                <Box as="span"><Link isExternal color="pink.700" fontWeight="extrabold" textTransform="uppercase" href={props.current.url} isExternal>
+                                    {props.current.id}
                                 </Link></Box>
                             </Td>
                         </Tr>

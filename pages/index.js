@@ -9,11 +9,22 @@ import MainFluffImage from '../components/browse/MainFluffImage'
 import Name from '../components/browse/Name'
 import React, { useState, useEffect, useContext } from 'react'
 import { TokenContext } from './_app'
+import store from 'store/dist/store.modern.min'
 
 export default function Home() {
 
   const [results, setResults] = useState(null);
+  const [favs, setFavs] = useState(null);
   const accessToken = useContext(TokenContext);
+
+  //Get anything from local storage and set it to favs state when the component mounts
+  useEffect(() => {
+    setFavs(localStorage.getItem('favs'))
+  }, [])
+  //When the favs state changes, save it to local storage
+  useEffect(() => {
+    localStorage.setItem('favs', favs)
+  }, [favs])
 
   useEffect(() => {
     if (accessToken === null) return;
@@ -27,11 +38,37 @@ export default function Home() {
       const json = await apiResults.json();
       const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
       setResults(filtered);
-      // console.log(filtered[0])
+      console.log(filtered[0])
     }
     getPets();
   }, [accessToken]);
   if (results === null) return <Loading />;
+
+  //Function to splice the first item off results and discard it
+  const spliceResults = (e, direction) => {
+    if (direction === 'left') {
+      setResults(results.slice(0, results.length - 1));
+    } else if (direction === 'right') {
+      setResults(results.slice(1, results.length));
+    }
+
+  }
+  const handleClickLeft = () => {
+    // spliceResults("left")
+    console.log("Spliced! Left")
+  }
+  const handleClickRight = () => {
+    // spliceResults("right")
+    console.log("Spliced! Right")
+  }
+  const addToFavs = (e, pet) => {
+    if (favs === null) {
+      favs = [];
+    }
+    if (favs.indexOf(pet.id) === -1) {
+      favs.push(pet.id);
+    }
+  }
 
   return (
 
@@ -43,10 +80,10 @@ export default function Home() {
       <Header />
 
       <Box className="browse" h="auto">
-        <MainFluffImage props={results[0]} />
+        <MainFluffImage current={results[0]} handleClickRight={handleClickRight} handleClickLeft={handleClickLeft} />
         <Flex flexDirection="column" alignItems="center">
-          <Name props={results[0]} />
-          <FluffStats props={results[0]} />
+          <Name current={results[0]} />
+          <FluffStats current={results[0]} />
           <CurrentFavs />
         </Flex>
       </Box>

@@ -5,9 +5,9 @@ import { GenderMale, GenderFemale } from 'react-bootstrap-icons'
 const Name = (props) => {
     return (
         <Flex alignItems="center" flexDirection="column">
-            <Box color="purple.700" fontSize="5xl" as="h2">{props.props.name}</Box>
+            <Box color="purple.700" fontSize="5xl" as="h2">{props.current.name}</Box>
 
-            {(props.props.gender === "Male" || props.props.gender === "male")
+            {(props.current.gender === "Male" || props.current.gender === "male")
                 ?
                 <Flex className="male" flexDirection="row">
                     <GenderMale size={25} color="RoyalBlue" /> <Box textTransform="uppercase" as="span">Male</Box>
