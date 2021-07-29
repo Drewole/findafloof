@@ -27,7 +27,7 @@ export default function Home() {
       const json = await apiResults.json();
       const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
       setResults(filtered);
-      console.log(filtered[0])
+      // console.log(filtered[0])
     }
     getPets();
   }, [accessToken]);
@@ -37,7 +37,7 @@ export default function Home() {
 
     <Box backgroundColor="purple.50" p="2" height="100%" className="container">
       <Head as="h1" size="2xl" mb="2">
-        <title>Find a Floof</title>
+        <title>Find a Floof | Fun way to find your new pet.</title>
         <link rel="icon" href="/logoDog.svg" />
       </Head>
       <Header />

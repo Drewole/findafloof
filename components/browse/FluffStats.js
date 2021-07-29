@@ -16,7 +16,9 @@ import { ChevronExpand } from 'react-bootstrap-icons'
 
 const FluffStats = (props) => {
     const replaceWithPlus = (str) => {
-        return str.replace(/\s/g, "+")
+        if (str === null) {
+            return
+        } else { return str.replace(/\s/g, '+') }
     }
     const address1 = replaceWithPlus(props.props.contact.address.address1) + ',';
     const address2 = replaceWithPlus(props.props.contact.address.address2) + ',';
