@@ -7,7 +7,7 @@ const CurrentFavs = () => {
     return (
 
         <Wrap display="flex" justify="center" mb={5} mt={10} alignItems="center" p="5" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "90vw", md: "80vw", lg: "66vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
-            <WrapItem maxWidth="100%" >
+            <WrapItem maxWidth="50%" >
                 <Image
                     layout="intrinsic"
                     src="/placeholder/Rectangle.png" // Route of the image file
@@ -21,7 +21,7 @@ const CurrentFavs = () => {
                     <XCircleFill size={16} />
                 </Button>
             </WrapItem>
-            <WrapItem maxWidth="32%" >
+            <WrapItem maxWidth="50%" >
                 <Image
                     layout="intrinsic"
                     src="/placeholder/Rectangle1.png" // Route of the image file
@@ -35,7 +35,7 @@ const CurrentFavs = () => {
                     <XCircleFill size={16} />
                 </Button>
             </WrapItem>
-            <WrapItem maxWidth="32%"  >
+            <WrapItem maxWidth="50%"  >
                 <Image
                     layout="intrinsic"
                     src="/placeholder/Rectangle2.png" // Route of the image file
@@ -49,7 +49,7 @@ const CurrentFavs = () => {
                     <XCircleFill size={16} />
                 </Button>
             </WrapItem>
-            <WrapItem maxWidth="32%" >
+            <WrapItem maxWidth="50%" >
                 <Image
                     layout="intrinsic"
                     src="/placeholder/Rectangle3.png" // Route of the image file

@@ -47,8 +47,11 @@ export default function Home() {
   }, [favorites])
 
   useEffect(() => {
+    // Making sure we have a token
     if (accessToken === null) return;
     console.log(accessToken, "Access Token")
+    //TODO: Need to make sure we fetch more results when the results are less than 5
+
     const getPets = async () => {
       const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
         headers: {
@@ -73,6 +76,7 @@ export default function Home() {
     } else if (direction === "right") {
       console.log("right")
       addToFavs()
+      handleDelete()
 
     }
 
@@ -86,12 +90,11 @@ export default function Home() {
     const newFavs = store.get('favs') || []
     newFavs.push(results[0])
     setFavorites(newFavs)
-    handleDelete()
   }
 
   return (
 
-    <Box backgroundColor="purple.50" p="2" height="100%" className="container">
+    <Box overflow="hidden" backgroundColor="purple.50" p="2" height="100%" className="container">
       <Head as="h1" size="2xl" mb="2">
         <title>Find a Floof | Fun way to find your new pet.</title>
         <link rel="icon" href="/logoDog.svg" />
