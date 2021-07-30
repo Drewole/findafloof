@@ -12,33 +12,54 @@ import { TokenContext } from './_app'
 import store from 'store/dist/store.modern.min'
 
 export default function Home() {
+  let escapeKey = 27;
+  let leftArrowKey = 37;
+  let rightArrowKey = 37;
+
+  // // Store current user
+  // store.set('user', { name: 'Marcus' })
+
+  // // Get current user
+  // store.get('user')
+
+  // // Remove current user
+  // store.remove('user')
+
+  // // Clear all keys
+  // store.clearAll()
+
+  // // Loop over all stored values
+  // store.each(function (value, key) {
+  //   console.log(key, '==', value)
+  // })
 
   const [results, setResults] = useState(null);
-  const [favs, setFavs] = useState(null);
+  const [favorites, setFavorites] = useState(null);
   const accessToken = useContext(TokenContext);
 
   //Get anything from local storage and set it to favs state when the component mounts
   useEffect(() => {
-    setFavs(localStorage.getItem('favs'))
+    setFavorites(store.get('favs'))
   }, [])
   //When the favs state changes, save it to local storage
   useEffect(() => {
-    localStorage.setItem('favs', favs)
-  }, [favs])
+    store.set('favs', favorites)
+  }, [favorites])
 
   useEffect(() => {
     if (accessToken === null) return;
-    console.log(accessToken)
+    console.log(accessToken, "Access Token")
     const getPets = async () => {
       const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
         headers: {
           Authorization: `Bearer ${accessToken.access_token}`,
         },
       })
+      console.log("Just fetched")
       const json = await apiResults.json();
       const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
       setResults(filtered);
-      console.log(filtered[0])
+      // console.log(filtered[0])
     }
     getPets();
   }, [accessToken]);
@@ -48,21 +69,24 @@ export default function Home() {
   const handleChoice = (direction) => {
     if (direction === 'left') {
       console.log("left")
-      // setResults(results.slice(0, results.length - 1));
+      handleDelete()
     } else if (direction === "right") {
       console.log("right")
-      // setResults(results.slice(1, results.length));
+      addToFavs()
+
     }
 
   }
-
-  const addToFavs = (e, pet) => {
-    if (favs === null) {
-      favs = [];
-    }
-    if (favs.indexOf(pet.id) === -1) {
-      favs.push(pet.id);
-    }
+  // Delete first item from results array
+  const handleDelete = () => {
+    setResults(results.slice(1, results.length));
+  }
+  //Add first item to favs array
+  const addToFavs = () => {
+    const newFavs = store.get('favs') || []
+    newFavs.push(results[0])
+    setFavorites(newFavs)
+    handleDelete()
   }
 
   return (

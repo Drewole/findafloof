@@ -68,12 +68,12 @@ const MainFluffImage = (props) => {
                         objectFit="cover"
                         // onClick={() => { console.log('clicked'); }}
                         src={props.current.primary_photo_cropped.full}
-                        width={320}
-                        height={390}
+
+                        height="370px"
                         position="relative"
                         zIndex={0}
                         boxShadow="xl"
-                        maxWidth="320px"
+                        width="320px"
                         transition="all 0.2s"
                         transform="scale(1)"
                         // _hover={{

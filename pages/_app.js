@@ -11,7 +11,6 @@ function App({ Component, pageProps }) {
         const fetchAccessToken = async () => {
             const res = await fetch(`/api/oauth-token`);
             const json = await res.json();
-            console.log(json, "Fetch Access Token")
             setAccessToken(json);
         };
         fetchAccessToken();
