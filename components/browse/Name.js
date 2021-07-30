@@ -10,11 +10,11 @@ const Name = (props) => {
             {(props.current.gender === "Male" || props.current.gender === "male")
                 ?
                 <Flex className="male" flexDirection="row">
-                    <GenderMale size={25} color="RoyalBlue" /> <Box textTransform="uppercase" as="span">Male</Box>
+                    <GenderMale size={25} color="RoyalBlue" /> <Box textTransform="uppercase" as="span">Boy</Box>
                 </Flex>
                 :
                 <Flex className="female" flexDirection="row">
-                    <GenderFemale size={25} color="Crimson" /> <Box textTransform="uppercase" as="span">Female</Box>
+                    <GenderFemale size={25} color="Crimson" /> <Box textTransform="uppercase" as="span">Girl</Box>
                 </Flex>
             }
         </Flex>

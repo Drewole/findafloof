@@ -8,13 +8,13 @@ const Loading = () => {
 
                 <Center><img src="logoDog.svg" alt="" /></Center>
                 <Center display="block" position="relative">
-                    <Box class="loader">
-                        <div class="paw"><img src="/paw.svg"></img></div>
-                        <div class="paw"><img src="/paw.svg"></img></div>
-                        <div class="paw"><img src="/paw.svg"></img></div>
-                        <div class="paw"><img src="/paw.svg"></img></div>
-                        <div class="paw"><img src="/paw.svg"></img></div>
-                        <div class="paw"><img src="/paw.svg"></img></div>
+                    <Box className="loader">
+                        <div className="paw"><img src="/paw.svg"></img></div>
+                        <div className="paw"><img src="/paw.svg"></img></div>
+                        <div className="paw"><img src="/paw.svg"></img></div>
+                        <div className="paw"><img src="/paw.svg"></img></div>
+                        <div className="paw"><img src="/paw.svg"></img></div>
+                        <div className="paw"><img src="/paw.svg"></img></div>
                     </Box>
                 </Center>
                 <Box mt={5} color="purple.800" fontWeight="extrabold" textTransform="uppercase" as="h2">Finding Floofs, Please wait..</Box>

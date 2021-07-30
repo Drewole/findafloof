@@ -45,22 +45,17 @@ export default function Home() {
   if (results === null) return <Loading />;
 
   //Function to splice the first item off results and discard it
-  const spliceResults = (e, direction) => {
+  const handleChoice = (direction) => {
     if (direction === 'left') {
-      setResults(results.slice(0, results.length - 1));
-    } else if (direction === 'right') {
-      setResults(results.slice(1, results.length));
+      console.log("left")
+      // setResults(results.slice(0, results.length - 1));
+    } else if (direction === "right") {
+      console.log("right")
+      // setResults(results.slice(1, results.length));
     }
 
   }
-  const handleClickLeft = () => {
-    // spliceResults("left")
-    console.log("Spliced! Left")
-  }
-  const handleClickRight = () => {
-    // spliceResults("right")
-    console.log("Spliced! Right")
-  }
+
   const addToFavs = (e, pet) => {
     if (favs === null) {
       favs = [];
@@ -80,7 +75,7 @@ export default function Home() {
       <Header />
 
       <Box className="browse" h="auto">
-        <MainFluffImage current={results[0]} handleClickRight={handleClickRight} handleClickLeft={handleClickLeft} />
+        <MainFluffImage current={results[0]} handleChoice={handleChoice} />
         <Flex flexDirection="column" alignItems="center">
           <Name current={results[0]} />
           <FluffStats current={results[0]} />

@@ -44,7 +44,7 @@ const MainFluffImage = (props) => {
                     borderColor="white"
                     borderWidth={4}
                     borderRadius="50%"
-                    onClick={props.handleClickLeft}
+                    onClick={() => props.handleChoice("left")}
                 >
                     <Box as="span" position="relative" zIndex="2">
                         <XLg size={30} color="DarkRed" />
@@ -57,7 +57,7 @@ const MainFluffImage = (props) => {
                     dragConstraints={{ left: 0, right: 0 }}
                     whileDrag={{ scale: .97 }}
                     onDragEnd={(e) => {
-                        checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth)
+                        props.handleChoice(checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth))
 
                     }}
 
@@ -66,11 +66,10 @@ const MainFluffImage = (props) => {
                         className="current-fluff"
                         userSelect="none"
                         objectFit="cover"
-                        maxWidth={100}
                         // onClick={() => { console.log('clicked'); }}
                         src={props.current.primary_photo_cropped.full}
                         width={320}
-                        height="auto"
+                        height={390}
                         position="relative"
                         zIndex={0}
                         boxShadow="xl"
@@ -96,7 +95,7 @@ const MainFluffImage = (props) => {
                     zIndex={1}
                     height={70}
                     width={70}
-                    onClick={props.handleClickRight}
+                    onClick={() => props.handleChoice("right")}
                     borderStyle="solid"
                     _hover={{
                         cursor: 'pointer',
