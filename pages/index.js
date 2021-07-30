@@ -33,12 +33,6 @@ export default function Home() {
     setResults(filtered);
     // console.log(filtered[0])
   }
-  const deleteFromFavorites = (pet) => {
-    console.log("Deleting from favorites")
-    const favCopy = [...favorites]
-    const newArray = favCopy.filter(obj => !pet.has(obj.id));
-    setFavorites(newArray);
-  }
 
   //Get anything from local storage and set it to favs state when the component mounts
   useEffect(() => {
@@ -83,6 +77,12 @@ export default function Home() {
     newFavs.push(results[0])
     setFavorites(newFavs)
   }
+  const deleteFromFavorites = (e, pet) => {
+    console.log("Deleting from favorites")
+    const favCopy = [...favorites]
+    const newArray = favCopy.filter(obj => !pet.has(obj.id));
+    setFavorites(newArray);
+  }
 
   return (
 
@@ -98,7 +98,7 @@ export default function Home() {
         <Flex flexDirection="column" alignItems="center">
           <Name current={results[0]} />
           <FluffStats current={results[0]} />
-          <CurrentFavs favs={[setFavorites, favorites]} />
+          <CurrentFavs deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
         </Flex>
       </Box>
 

@@ -9,7 +9,7 @@ import {
     ModalCloseButton,
 } from "@chakra-ui/react"
 
-function Modal() {
+function FavDeleteModal() {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
@@ -33,4 +33,4 @@ function Modal() {
     )
 }
 
-export default Modal
+export default FavDeleteModal
