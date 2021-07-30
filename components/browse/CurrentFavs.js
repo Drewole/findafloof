@@ -2,10 +2,11 @@ import { Box, Wrap, WrapItem, Container, Center, Button } from '@chakra-ui/react
 import React from 'react'
 import { XCircleFill } from 'react-bootstrap-icons'
 import Image from 'next/image'
-const CurrentFavs = () => {
+import Modal from '../../components/Modal'
+
+const CurrentFavs = ({ favorites }) => {
 
     return (
-
         <Wrap display="flex" justify="center" mb={5} mt={10} alignItems="center" p="5" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "90vw", md: "80vw", lg: "66vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
             <WrapItem maxWidth="50%" >
                 <Image
