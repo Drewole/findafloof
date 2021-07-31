@@ -10,6 +10,7 @@ import Name from '../components/browse/Name'
 import React, { useState, useEffect, useContext } from 'react'
 import { TokenContext } from './_app'
 import store from 'store/dist/store.modern.min'
+import FilterForm from '../components/browse/FilterForm'
 
 export default function Home() {
   let escapeKey = 27;
@@ -22,7 +23,20 @@ export default function Home() {
 
   const getPets = async () => {
 
-    const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable&good_with_children=1&age=baby,young,adult,senior&good_with_cats=1&good_with_dogs=1', {
+    // Search Params - separate with a &
+    // type=dog,cat
+    // location=55437
+    // limit=100
+    // status=adoptable
+    // good_with_children=1 bool
+    // good_with_cats=1 bool
+    // good_with_dogs=1 bool
+    // age=baby,young,adult,senior  
+
+    //TODO: Need to make sure we fetch more results when the results are less than 5
+    //Need to compare the results to the favorites and remove any that are already in the favorites
+    //Need to make sure we are not fetching the same results over and over
+    const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable', {
       headers: {
         Authorization: `Bearer ${accessToken.access_token}`,
       },
@@ -48,27 +62,33 @@ export default function Home() {
     if (accessToken === null) return;
     console.log(accessToken, "Access Token")
 
-    //TODO: Need to make sure we fetch more results when the results are less than 5
-
     getPets();
   }, [accessToken]);
   if (results === null) return <Loading />;
+
+  function searchDuplicate(nameKey, myArray) {
+    for (var i = 0; i < myArray.length; i++) {
+      if (myArray[i].name === nameKey) {
+        return
+      }
+    }
+  }
 
   //Handle the choice of the user
   const handleChoice = (direction) => {
     if (direction === 'left') {
       console.log("left")
-      handleDelete()
+      nextAnimal()
       results.length === 0 ? getPets() : null
     } else if (direction === "right") {
       console.log("right")
       addToFavs()
-      handleDelete()
+      nextAnimal()
       results.length === 0 ? getPets() : null
     }
   }
-  // Delete first item from results array
-  const handleDelete = () => {
+  // Delete first item from results array and display the next one
+  const nextAnimal = () => {
     setResults(results.slice(1, results.length));
   }
   //Add current item to favs array
@@ -77,11 +97,11 @@ export default function Home() {
     newFavs.push(results[0])
     setFavorites(newFavs)
   }
-  const deleteFromFavorites = (e, pet) => {
-    console.log("Deleting from favorites")
-    const favCopy = [...favorites]
-    const newArray = favCopy.filter(obj => !pet.has(obj.id));
-    setFavorites(newArray);
+  const deleteFromFavorites = (e) => {
+    const selectedId = e.target.id
+    console.log(selectedId, "selected ID")
+    const filteredFavs = favorites.filter((favorite) => favorite.id !== selectedId);
+    setFavorites(filteredFavs);
   }
 
   return (
@@ -94,6 +114,9 @@ export default function Home() {
       <Header />
 
       <Box className="browse" h="auto">
+        <Box p="2">
+          <FilterForm />
+        </Box>
         <MainFluffImage current={results[0]} handleChoice={handleChoice} />
         <Flex flexDirection="column" alignItems="center">
           <Name current={results[0]} />
