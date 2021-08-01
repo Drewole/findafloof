@@ -71,6 +71,34 @@ const FilterForm = () => {
                         </Flex>
 
                     </Stack>
+                    {/* age=baby,young,adult,senior */}
+                    <Stack p={5} spacing={2} minWidth="300px">
+                        <Flex>
+                            <Switch size="md" colorScheme="purple" id="baby" />
+                            <FormLabel ml={2} htmlFor="baby" mb="0">
+                                Baby
+                            </FormLabel>
+                        </Flex>
+                        <Flex>
+                            <Switch size="md" colorScheme="purple" id="young" />
+                            <FormLabel ml={2} htmlFor="young" mb="0">
+                                Young
+                            </FormLabel>
+                        </Flex>
+                        <Flex>
+                            <Switch size="md" colorScheme="purple" id="adult" />
+                            <FormLabel ml={2} htmlFor="adult" mb="0">
+                                Adult
+                            </FormLabel>
+                        </Flex>
+                        <Flex>
+                            <Switch size="md" colorScheme="purple" id="senior" />
+                            <FormLabel ml={2} htmlFor="senior" mb="0">
+                                Senior
+                            </FormLabel>
+                        </Flex>
+
+                    </Stack>
 
                 </FormControl>
             </Center>
