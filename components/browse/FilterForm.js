@@ -97,13 +97,13 @@ const FilterForm = () => {
                             <Box as="h3">Age</Box>
                             <Flex>
                                 <Flex>
-                                    <Switch size="md" colorScheme="purple" id="baby" />
+                                    <Switch size="lg" colorScheme="purple" id="baby" />
                                     <FormLabel ml={2} htmlFor="baby" mb="0">
                                         Baby
                                     </FormLabel>
                                 </Flex>
                                 <Flex>
-                                    <Switch size="md" colorScheme="purple" id="young" />
+                                    <Switch size="lg" colorScheme="purple" id="young" />
                                     <FormLabel ml={2} htmlFor="young" mb="0">
                                         Young
                                     </FormLabel>
@@ -111,13 +111,13 @@ const FilterForm = () => {
                             </Flex>
                             <Flex>
                                 <Flex>
-                                    <Switch size="md" colorScheme="purple" id="adult" />
+                                    <Switch size="lg" colorScheme="purple" id="adult" />
                                     <FormLabel ml={2} htmlFor="adult" mb="0">
                                         Adult
                                     </FormLabel>
                                 </Flex>
                                 <Flex>
-                                    <Switch size="md" colorScheme="purple" id="senior" />
+                                    <Switch size="lg" colorScheme="purple" id="senior" />
                                     <FormLabel ml={2} htmlFor="senior" mb="0">
                                         Senior
                                     </FormLabel>

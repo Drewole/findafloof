@@ -100,7 +100,7 @@ export default function Home() {
   const deleteFromFavorites = (e) => {
     const selectedId = e.target.id
     console.log(selectedId, "selected ID")
-    const filteredFavs = favorites.filter((favorite) => favorite.id !== selectedId);
+    const filteredFavs = favorites.filter((favorite) => favorite.id != selectedId);
     console.log(filteredFavs)
     setFavorites(filteredFavs);
   }
