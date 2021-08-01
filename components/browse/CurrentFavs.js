@@ -1,4 +1,4 @@
-import { Box, Wrap, WrapItem, Container, Center, Button, Image } from '@chakra-ui/react'
+import { Box, Wrap, WrapItem, Container, Center, Button, Image, IconButton } from '@chakra-ui/react'
 import React from 'react'
 import { XCircleFill } from 'react-bootstrap-icons'
 import Modal from './FavDeleteModal'
@@ -19,9 +19,10 @@ const CurrentFavs = ({ favorites, deleteFromFavorites }) => {
                             fallbackSrc="https://via.placeholder.com/175"
                             boxShadow="md"
                         />
-                        <Button id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0">
-                            <XCircleFill pointerEvents="none" size={20} />
-                        </Button>
+
+                        <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
+                        {/* <XCircleFill pointerEvents="none" size={20} /> */}
+
                     </WrapItem>
                 ))
                 :
