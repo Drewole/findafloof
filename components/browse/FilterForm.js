@@ -11,7 +11,8 @@ import {
     Stack,
     Input,
     Box,
-    Flex
+    Flex,
+    Divider
 } from "@chakra-ui/react"
 
 const FilterForm = () => {
@@ -29,11 +30,17 @@ const FilterForm = () => {
     return (
         <div>
             <Center>
-                <FormControl borderWidth="1px" borderColor="blackAlpha.100" borderRadius={35} justifyContent="center" maxWidth="768px" flexWrap="wrap" display="flex" alignItems="center">
+                <Box as="h2">Filter Floofs</Box>
+            </Center>
+            <Center>
+
+                <FormControl borderWidth="1px" borderColor="blackAlpha.100" borderRadius={35} justifyContent="center" w={{ base: "90vw", md: "70vw", lg: "54vw" }} flexWrap="wrap" display="flex" alignItems="center">
+
                     <Box minWidth="300px" p={5}>
                         <Box textAlign="center" as="p">
                             Type
                         </Box>
+                        <Divider />
                         <Flex alignItems="center" flexWrap="wrap" justifyContent="space-evenly">
                             <CheckboxGroup id="type">
 
@@ -46,11 +53,12 @@ const FilterForm = () => {
                             </CheckboxGroup>
                         </Flex>
                     </Box>
-                    <Stack minWidth="300px" spacing={2}>
+                    <Stack p={5} minWidth="300px" spacing={2}>
                         <Input borderWidth="2px" borderColor="blackAlpha.300" placeholder="Zipcode" size="md" />
-                        <FormHelperText color="blackAlpha.800" fontSize="sm">Search Center</FormHelperText>
+                        <FormHelperText color="blackAlpha.800" fontSize="sm">Location</FormHelperText>
                     </Stack>
                     <Stack p={5} spacing={2} minWidth="300px">
+                        <Box as="h3">Behavior</Box>
                         <Flex>
                             <Switch size="lg" colorScheme="purple" id="good-with-children" />
                             <FormLabel ml={2} htmlFor="good-with-children" mb="0">
@@ -71,31 +79,36 @@ const FilterForm = () => {
                         </Flex>
 
                     </Stack>
-                    {/* age=baby,young,adult,senior */}
+
                     <Stack p={5} spacing={2} minWidth="300px">
+                        <Box as="h3">Age</Box>
                         <Flex>
-                            <Switch size="md" colorScheme="purple" id="baby" />
-                            <FormLabel ml={2} htmlFor="baby" mb="0">
-                                Baby
-                            </FormLabel>
+                            <Flex>
+                                <Switch size="md" colorScheme="purple" id="baby" />
+                                <FormLabel ml={2} htmlFor="baby" mb="0">
+                                    Baby
+                                </FormLabel>
+                            </Flex>
+                            <Flex>
+                                <Switch size="md" colorScheme="purple" id="young" />
+                                <FormLabel ml={2} htmlFor="young" mb="0">
+                                    Young
+                                </FormLabel>
+                            </Flex>
                         </Flex>
                         <Flex>
-                            <Switch size="md" colorScheme="purple" id="young" />
-                            <FormLabel ml={2} htmlFor="young" mb="0">
-                                Young
-                            </FormLabel>
-                        </Flex>
-                        <Flex>
-                            <Switch size="md" colorScheme="purple" id="adult" />
-                            <FormLabel ml={2} htmlFor="adult" mb="0">
-                                Adult
-                            </FormLabel>
-                        </Flex>
-                        <Flex>
-                            <Switch size="md" colorScheme="purple" id="senior" />
-                            <FormLabel ml={2} htmlFor="senior" mb="0">
-                                Senior
-                            </FormLabel>
+                            <Flex>
+                                <Switch size="md" colorScheme="purple" id="adult" />
+                                <FormLabel ml={2} htmlFor="adult" mb="0">
+                                    Adult
+                                </FormLabel>
+                            </Flex>
+                            <Flex>
+                                <Switch size="md" colorScheme="purple" id="senior" />
+                                <FormLabel ml={2} htmlFor="senior" mb="0">
+                                    Senior
+                                </FormLabel>
+                            </Flex>
                         </Flex>
 
                     </Stack>
