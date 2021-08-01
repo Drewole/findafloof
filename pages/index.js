@@ -101,6 +101,7 @@ export default function Home() {
     const selectedId = e.target.id
     console.log(selectedId, "selected ID")
     const filteredFavs = favorites.filter((favorite) => favorite.id !== selectedId);
+    console.log(filteredFavs)
     setFavorites(filteredFavs);
   }
 

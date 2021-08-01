@@ -1,9 +1,24 @@
 import { Heading, Text, Flex, Container, Box, Center } from '@chakra-ui/react'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import SortableTable from '../components/favorites/SortableTable'
+import CurrentFavs from '../components/browse/CurrentFavs'
 import Header from '../components/Header'
+import store from 'store/dist/store.modern.min'
+import Loading from '../components/Loading'
 
 const favorites = () => {
+    const [favorites, setFavorites] = useState(null);
+
+    //Get anything from local storage and set it to favs state when the component mounts
+    useEffect(() => {
+        setFavorites(store.get('favs'))
+    }, [])
+    //When the favs state changes, save it to local storage
+    useEffect(() => {
+        store.set('favs', favorites)
+    }, [favorites])
+
+    if (favorites === null) return <Loading />;
     return (
         <Box height="100vh" alignItems="center" className="container">
             <Header />
@@ -12,7 +27,7 @@ const favorites = () => {
                 <link rel="icon" href="/logoDog.svg" />
             </Head>
             <Center>
-                <SortableTable />
+                <CurrentFavs favorites={favorites} />
             </Center>
 
         </Box>

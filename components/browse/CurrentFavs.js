@@ -14,7 +14,7 @@ const CurrentFavs = ({ favorites, deleteFromFavorites }) => {
                             src={favorite.primary_photo_cropped.full} // Route of the image file
                             boxSize="175px"
                             objectFit="cover"
-                            alt=""
+                            alt={favorite.name}
                             borderRadius={12}
                             fallbackSrc="https://via.placeholder.com/175"
                             boxShadow="md"
