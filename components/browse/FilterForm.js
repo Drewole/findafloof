@@ -35,17 +35,17 @@ const FilterForm = () => {
 
     return (
         <div>
-            <Box mx="auto" w={{ base: "90vw", md: "70vw", lg: "54vw" }} >
+            <Center >
                 <Button _hover={{
                     cursor: 'pointer',
                     transform: 'scale(1.25)'
                 }} outline="none" colorScheme="transparent" size="sm" onClick={handleToggle} mt="1rem">
                     <FilterSquare size={16} color="rgba(0,0,0,.4)" />  <Box color="blackAlpha.400" ml={1}>Filter Floofs</Box>
                 </Button>
-            </Box>
+            </Center>
             <Center>
-                <Collapse border="0px" startingHeight={50} className={show == true ? "" : "closed"} in={show}>
-                    <FormControl mb={30} backgroundColor="whiteAlpha.600" borderWidth="1px" borderColor="blackAlpha.100" borderRadius={35} justifyContent="center" w={{ base: "90vw", md: "70vw", lg: "54vw" }} flexWrap="wrap" display="flex" alignItems="center">
+                <Collapse border="0px" startingHeight={0} className={show == true ? "" : "closed"} in={show}>
+                    <FormControl boxShadow="md" mb={30} backgroundColor="whiteAlpha.600" borderWidth="1px" borderColor="blackAlpha.100" borderRadius={35} justifyContent="center" w={{ base: "90vw", md: "70vw", lg: "54vw" }} flexWrap="wrap" display="flex" alignItems="flex-start">
 
                         <Box minWidth="300px" p={5}>
                             <Box textAlign="center" as="p">
@@ -67,8 +67,10 @@ const FilterForm = () => {
                             </Flex>
                         </Box>
                         <Stack p={5} minWidth="300px" spacing={2}>
-                            <Input borderWidth="2px" borderColor="blackAlpha.300" placeholder="Zipcode" size="md" />
-                            <FormHelperText color="blackAlpha.800" fontSize="sm">Location</FormHelperText>
+                            <FormLabel ml={2} htmlFor="location" mb="0">
+                                Location
+                            </FormLabel>
+                            <Input borderWidth="2px" id="location" borderColor="blackAlpha.300" placeholder="Zipcode" size="md" />
                         </Stack>
                         <Stack p={5} spacing={2} minWidth="300px">
                             <Box as="h3">Behavior</Box>
@@ -125,14 +127,15 @@ const FilterForm = () => {
                             </Flex>
 
                         </Stack>
-                        <Center mb={10} flexBasis="100%"><Button boxShadow="md" onClick={() => console.log("Search button clicked")} colorScheme="pink" fontSize="md" textTransform="uppercase"><Search /> &nbsp; Search</Button></Center>
+                        <Divider />
+                        <Center my={5} flexBasis="100%"><Button boxShadow="md" onClick={() => console.log("Search button clicked")} colorScheme="pink" fontSize="md" textTransform="uppercase"><Search /> &nbsp; Search</Button></Center>
 
                     </FormControl>
                 </Collapse>
 
             </Center>
 
-            <Box className="gradient"></Box>
+            {/* <Box className="gradient"></Box> */}
 
         </div >
     )
