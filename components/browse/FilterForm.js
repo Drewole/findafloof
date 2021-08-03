@@ -38,7 +38,8 @@ const FilterForm = () => {
             <Center >
                 <Button _hover={{
                     cursor: 'pointer',
-                    transform: 'scale(1.25)'
+                    transform: 'scale(1.25)',
+                    color: '#pink.700'
                 }} outline="none" colorScheme="transparent" size="sm" onClick={handleToggle} mt="1rem">
                     <FilterSquare size={16} color="rgba(0,0,0,.4)" />  <Box color="blackAlpha.400" ml={1}>Filter Floofs</Box>
                 </Button>

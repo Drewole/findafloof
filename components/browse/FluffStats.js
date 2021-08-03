@@ -38,7 +38,10 @@ const FluffStats = (props) => {
     return (
 
         <>
-            <Collapse border="0px" startingHeight={250} className={show == true ? "" : "closed"} in={show}>
+            <Button backgroundColor="transparent" textTransform="uppercase" size="sm" onClick={handleToggle} mt="1rem">
+                <ChevronExpand />  <Box ml={1}>{show ? "Hide Details" : "More Details"}</Box>
+            </Button>
+            <Collapse border="0px" startingHeight={0} className={show == true ? "" : "closed"} in={show}>
                 <Table boxShadow="md" overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "54vw" }} borderRadius="2xl" size="md" variant="simple">
                     <TableCaption fontSize="md" textAlign="left">{props.current.description}</TableCaption>
                     <Thead >
@@ -106,10 +109,7 @@ const FluffStats = (props) => {
                     </Tbody>
                 </Table>
             </Collapse>
-            <Box className="gradient"></Box>
-            <Button boxShadow="lg" colorScheme="pink" size="sm" onClick={handleToggle} mt="1rem">
-                <ChevronExpand color="white" />  <Box ml={1}>{show ? "Less" : "More"}</Box>
-            </Button>
+            {/* <Box className="gradient"></Box> */}
 
         </>
     )

@@ -1,12 +1,14 @@
 import React from 'react'
 import { MobileView } from 'react-device-detect';
-import { Center, Image, Box, Button, Flex } from '@chakra-ui/react'
+import { Center, Image, Box, Button, Flex, useDisclosure, ScaleFade } from '@chakra-ui/react'
 import { CheckLg, XLg } from 'react-bootstrap-icons'
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion'
 
 const MotionBox = motion(Box)
 const MainFluffImage = (props) => {
-    //TODO: Need to get the image with next js and style it with chakra
+    //Using this for the animation below
+
+    //TODO: Need to get the image with next js and style it with chakra, but can't do that until Next.js supports wildcard urls
 
     // Just calculating the approximate middle of the screen
     const middleOfScreenX = (height) => {
@@ -26,7 +28,7 @@ const MainFluffImage = (props) => {
 
     return (
         <>
-            <Center mt={10}>
+            <Center mt={2}>
                 <Button
                     colorScheme="red"
                     left={35}
@@ -62,7 +64,9 @@ const MainFluffImage = (props) => {
                     }}
 
                 >
+
                     <Image
+
                         className="current-fluff"
                         userSelect="none"
                         objectFit="cover"
@@ -84,6 +88,7 @@ const MainFluffImage = (props) => {
                         borderRadius={35}
 
                     />
+
                 </MotionBox>
                 <Button
                     colorScheme="green"

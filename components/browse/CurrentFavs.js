@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { XCircleFill } from 'react-bootstrap-icons'
 import DeleteModal from './DeleteModal';
 
-const CurrentFavs = ({ favorites, deleteFromFavorites }) => {
+const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites }) => {
     useEffect(() => {
 
     }, [favorites]);
@@ -22,7 +22,7 @@ const CurrentFavs = ({ favorites, deleteFromFavorites }) => {
                                 alt={favorite.name}
                                 borderRadius={12}
                                 fallbackSrc="https://via.placeholder.com/175"
-                                boxShadow="md"
+                                boxShadow="lg"
                             />
 
                             <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
@@ -34,7 +34,7 @@ const CurrentFavs = ({ favorites, deleteFromFavorites }) => {
                 }
 
             </Wrap>
-            <Center><DeleteModal /></Center>
+            <Center><DeleteModal setFavorites={setFavorites} favorites={favorites} /></Center>
         </>
     )
 }

@@ -17,7 +17,7 @@ const Loading = () => {
                         <div className="paw"><img src="/paw.svg"></img></div>
                     </Box>
                 </Center>
-                <Box mt={2} color="purple.800" fontWeight="extrabold" textTransform="uppercase" as="h2">Finding Floofs, Please wait..</Box>
+                <Box mt={2} color="purple.800" fontWeight="extrabold" textTransform="uppercase" as="h2">Finding Floofs...</Box>
 
             </Flex>
 

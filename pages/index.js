@@ -45,12 +45,12 @@ export default function Home() {
     const json = await apiResults.json();
     const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
     setResults(filtered);
-    // console.log(filtered[0])
+
   }
 
   //Get anything from local storage and set it to favs state when the component mounts
   useEffect(() => {
-    setFavorites(store.get('favs'))
+    setFavorites(store.get('favs') || [])
   }, [])
   //When the favs state changes, save it to local storage
   useEffect(() => {
@@ -65,14 +65,6 @@ export default function Home() {
     getPets();
   }, [accessToken]);
   if (results === null) return <Loading />;
-
-  function searchDuplicate(nameKey, myArray) {
-    for (var i = 0; i < myArray.length; i++) {
-      if (myArray[i].name === nameKey) {
-        return
-      }
-    }
-  }
 
   //Handle the choice of the user
   const handleChoice = (direction) => {
@@ -98,11 +90,11 @@ export default function Home() {
     setFavorites(newFavs)
   }
   const deleteFromFavorites = (e) => {
-    const selectedId = e.target.id
+    const selectedId = parseInt(e.target.id, 10)
     console.log(selectedId, "selected ID")
-    const filteredFavs = favorites.filter((favorite) => favorite.id != selectedId);
-    console.log(filteredFavs)
-    setFavorites(filteredFavs);
+    const itemRemoved = favorites.filter((favorite) => favorite.id !== selectedId);
+    console.log(itemRemoved, "filtered favs")
+    setFavorites(itemRemoved);
   }
 
   return (
@@ -122,7 +114,7 @@ export default function Home() {
         <Flex flexDirection="column" alignItems="center">
           <Name current={results[0]} />
           <FluffStats current={results[0]} />
-          <CurrentFavs deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
+          <CurrentFavs setFavorites={setFavorites} deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
         </Flex>
       </Box>
 
