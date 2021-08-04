@@ -1,10 +1,11 @@
 import { theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
+import { motion } from 'framer-motion';
 import { useEffect, createContext, useState } from 'react'
 
 import './../scss/general.scss'
 export const TokenContext = createContext()
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps, router }) {
     const [accessToken, setAccessToken] = useState(null);
 
     useEffect(() => {
@@ -21,7 +22,16 @@ function App({ Component, pageProps }) {
 
             <CSSReset />
             <TokenContext.Provider value={accessToken}>
-                <Component {...pageProps} />
+                <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
+                    pageInitial: {
+                        opacity: 0,
+                    },
+                    pageAnimate: {
+                        opacity: 1,
+                    },
+                }}>
+                    <Component {...pageProps} />
+                </motion.div>
             </TokenContext.Provider>
         </ChakraProvider>
 

@@ -1,8 +1,8 @@
 import { Box, Wrap, WrapItem, Container, Center, Button, Image, IconButton } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { XCircleFill } from 'react-bootstrap-icons'
-import DeleteModal from './DeleteModal';
-
+import DeleteModal from './DeleteModal'
+import { motion } from 'framer-motion'
 const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites }) => {
     useEffect(() => {
 
@@ -13,21 +13,25 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites }) => {
 
                 {favorites.length !== 0 ?
                     favorites.map((favorite) => (
-                        <WrapItem key={favorite.id}>
-                            <Image
-                                src={favorite.primary_photo_cropped.full} // Route of the image file
-                                boxSize="175px"
-                                objectFit="cover"
-                                loading="lazy"
-                                alt={favorite.name}
-                                borderRadius={12}
-                                fallbackSrc="https://via.placeholder.com/175"
-                                boxShadow="lg"
-                            />
+                        <motion.div
+                            initial={{ scale: .8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1, transition: { delay: .3 } }}>
+                            <WrapItem key={favorite.id}>
+                                <Image
+                                    src={favorite.primary_photo_cropped.full} // Route of the image file
+                                    boxSize="175px"
+                                    objectFit="cover"
+                                    loading="lazy"
+                                    alt={favorite.name}
+                                    borderRadius={12}
+                                    fallbackSrc="https://via.placeholder.com/175"
+                                    boxShadow="lg"
+                                />
 
-                            <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
+                                <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
 
-                        </WrapItem>
+                            </WrapItem>
+                        </motion.div>
                     ))
                     :
                     <Center><Box fontSize="sm" fontWeight="bold" textTransform="uppercase" textAlign="center" color="blackAlpha.500" as="p">Add some favorites</Box></Center>

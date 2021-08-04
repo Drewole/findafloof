@@ -6,7 +6,7 @@ import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-mo
 
 const MotionBox = motion(Box)
 const MainFluffImage = (props) => {
-    //Using this for the animation below
+
 
     //TODO: Need to get the image with next js and style it with chakra, but can't do that until Next.js supports wildcard urls
 
@@ -64,30 +64,34 @@ const MainFluffImage = (props) => {
                     }}
 
                 >
+                    <motion.div
+                        initial={{ scale: .8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1, transition: { delay: .4 } }}>
+                        <Image
 
-                    <Image
+                            className="current-fluff"
+                            userSelect="none"
+                            objectFit="cover"
+                            // onClick={() => { console.log('clicked'); }}
+                            src={props.current.primary_photo_cropped.full}
+                            width={320}
+                            height={360}
+                            position="relative"
+                            zIndex={0}
+                            boxShadow="xl"
+                            transition="all 0.2s"
+                            transform="scale(1)"
+                            // _hover={{
+                            //     cursor: 'pointer',
+                            //     transform: 'scale(1.04)'
+                            // }}
+                            mb={8}
+                            w="100%"
+                            borderRadius={35}
 
-                        className="current-fluff"
-                        userSelect="none"
-                        objectFit="cover"
-                        // onClick={() => { console.log('clicked'); }}
-                        src={props.current.primary_photo_cropped.full}
-                        width={320}
-                        height={360}
-                        position="relative"
-                        zIndex={0}
-                        boxShadow="xl"
-                        transition="all 0.2s"
-                        transform="scale(1)"
-                        // _hover={{
-                        //     cursor: 'pointer',
-                        //     transform: 'scale(1.04)'
-                        // }}
-                        mb={8}
-                        w="100%"
-                        borderRadius={35}
+                        />
 
-                    />
+                    </motion.div>
 
                 </MotionBox>
                 <Button

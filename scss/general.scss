@@ -9,6 +9,7 @@ $pink900: #521c42;
 
 body {
     background-color: $purple100;
+    overflow-y: scroll;
 }
 .logo {
     transition: all 150ms ease-in-out;
