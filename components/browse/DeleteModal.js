@@ -39,7 +39,7 @@ function DeleteModal({ favorites, setFavorites }) {
                     <ModalBody>
                         Are you sure you want to remove all favorites?
                     </ModalBody>
-                    <ModalFooter>
+                    <ModalFooter d="flex" justifyContent="space-evenly">
                         <Button colorScheme="pink" onClick={() => handleRemoveAll, onClose}><Trash color="white" />&nbsp; Remove All</Button>
                         <Button onClick={onClose}> No Thanks</Button>
                     </ModalFooter>

@@ -11,6 +11,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { TokenContext } from './_app'
 import store from 'store/dist/store.modern.min'
 import FilterForm from '../components/browse/FilterForm'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function Home() {
   let escapeKey = 27;
@@ -106,16 +107,27 @@ export default function Home() {
       </Head>
       <Header />
 
-      <Box className="browse" h="auto">
-        <Box p="2">
-          <FilterForm />
-        </Box>
-        <MainFluffImage current={results[0]} handleChoice={handleChoice} />
+      <Box className="browse" minHeight="100vh">
+        <AnimatePresence>
+          <motion.div
+            key={results[0].id}
+            initial={{ scale: .8, opacity: 0, }}
+            animate={{ scale: 1, opacity: 1, transition: { delay: 1 } }}
+            exit={{ scale: .8, opacity: 0 }}
+          >
+            <Box p="2">
+              <FilterForm />
+            </Box>
+            <MainFluffImage current={results[0]} handleChoice={handleChoice} />
+            <Name current={results[0]} />
+          </motion.div>
+        </AnimatePresence>
         <Flex flexDirection="column" alignItems="center">
-          <Name current={results[0]} />
+
           <FluffStats current={results[0]} />
           <CurrentFavs setFavorites={setFavorites} deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
         </Flex>
+
       </Box>
 
       <Footer />

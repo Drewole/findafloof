@@ -20,8 +20,8 @@ const FluffStats = (props) => {
             return
         } else { return str.replace(/\s/g, '+') }
     }
-    const address1 = replaceWithPlus(props.current.contact.address.address1) + ',';
-    const address2 = replaceWithPlus(props.current.contact.address.address2) + ',';
+    const address1 = props.current.contact.address.address1 ? replaceWithPlus(props.current.contact.address.address1) + ',' : '';
+    const address2 = props.current.contact.address.address2 ? replaceWithPlus(props.current.contact.address.address2) + ',' : '';
     const city = replaceWithPlus(props.current.contact.address.city);
     const state = replaceWithPlus(props.current.contact.address.state);
     const zip = replaceWithPlus(props.current.contact.address.postcode);
@@ -38,7 +38,7 @@ const FluffStats = (props) => {
     return (
 
         <>
-            <Button backgroundColor="transparent" textTransform="uppercase" size="sm" onClick={handleToggle} mt="1rem">
+            <Button mt="24px" color="purple.700" backgroundColor="transparent" textTransform="uppercase" size="sm" onClick={handleToggle} mt="1rem">
                 <ChevronExpand />  <Box ml={1}>{show ? "Hide Details" : "More Details"}</Box>
             </Button>
             <Collapse border="0px" startingHeight={0} className={show == true ? "" : "closed"} in={show}>
