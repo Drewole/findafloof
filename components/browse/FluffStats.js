@@ -22,11 +22,11 @@ const FluffStats = (props) => {
     }
     const address1 = props.current.contact.address.address1 ? replaceWithPlus(props.current.contact.address.address1) + ',' : '';
     const address2 = props.current.contact.address.address2 ? replaceWithPlus(props.current.contact.address.address2) + ',' : '';
-    const city = replaceWithPlus(props.current.contact.address.city);
+    const city = props.current.contact.address.city ? replaceWithPlus(props.current.contact.address.city) + ',' : '';
     const state = replaceWithPlus(props.current.contact.address.state);
     const zip = replaceWithPlus(props.current.contact.address.postcode);
 
-    const petLocation = `https://www.google.com/maps/place/${address1}+${address2}+${city},+${state}+${zip}`
+    const petLocation = `https://www.google.com/maps/place/${address1}+${address2}+${city}+${state}+${zip}`
 
     const [show, setShow] = React.useState(false)
     const handleToggle = () => setShow(!show)
