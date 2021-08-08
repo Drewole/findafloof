@@ -1,4 +1,4 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Center } from '@chakra-ui/react'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Loading from '../components/Loading'
@@ -13,13 +13,15 @@ import store from 'store/dist/store.modern.min'
 import FilterForm from '../components/browse/FilterForm'
 import { AnimatePresence, motion } from 'framer-motion'
 
+// 1. Create a custom motion component from Box
+const MotionFlex = motion(Flex);
+const MotionBox = motion(Box);
+
 export default function Home() {
-  let escapeKey = 27;
-  let leftArrowKey = 37;
-  let rightArrowKey = 37;
 
   const [results, setResults] = useState(null);
   const [favorites, setFavorites] = useState(null);
+  const [direction, setDirection] = useState("");
   const accessToken = useContext(TokenContext);
 
   const getPets = async () => {
@@ -59,7 +61,7 @@ export default function Home() {
   }, [favorites])
 
   useEffect(() => {
-    // Making sure we have a token
+    // Making sure we have an api access token
     if (accessToken === null) return;
     console.log(accessToken, "Access Token")
 
@@ -71,10 +73,12 @@ export default function Home() {
   const handleChoice = (direction) => {
     if (direction === 'left') {
       console.log("left")
+      setDirection("left")
       nextAnimal()
       results.length === 0 ? getPets() : null
     } else if (direction === "right") {
       console.log("right")
+      setDirection("right")
       addToFavs()
       nextAnimal()
       results.length === 0 ? getPets() : null
@@ -90,12 +94,17 @@ export default function Home() {
     newFavs.push(results[0])
     setFavorites(newFavs)
   }
+
+  //TODO: Need to move these to a component
+  // Remove fav when user clicks small circle
   const deleteFromFavorites = (e) => {
     const selectedId = parseInt(e.target.id, 10)
-    console.log(selectedId, "selected ID")
     const itemRemoved = favorites.filter((favorite) => favorite.id !== selectedId);
-    console.log(itemRemoved, "filtered favs")
     setFavorites(itemRemoved);
+  }
+  // Delete all the favorites
+  const deleteAllFavs = () => {
+    setFavorites([]);
   }
 
   return (
@@ -108,24 +117,28 @@ export default function Home() {
       <Header />
 
       <Box className="browse" minHeight="100vh">
+
+        <Box p="2">
+          <FilterForm />
+        </Box>
         <AnimatePresence>
-          <motion.div
+          <MotionBox
             key={results[0].id}
-            initial={{ scale: .8, opacity: 0, }}
-            animate={{ scale: 1, opacity: 1, transition: { delay: 1 } }}
+            initial={{ scale: .8, opacity: 0, y: -100 }}
+            animate={{ scale: 1, opacity: 1, y: 0, transition: { delay: .5 } }}
             exit={{ scale: .8, opacity: 0 }}
+            overflow="hidden"
           >
-            <Box p="2">
-              <FilterForm />
-            </Box>
             <MainFluffImage current={results[0]} handleChoice={handleChoice} />
             <Name current={results[0]} />
-          </motion.div>
+          </MotionBox>
         </AnimatePresence>
-        <Flex flexDirection="column" alignItems="center">
 
+        <Flex flexDirection="column" alignItems="center">
           <FluffStats current={results[0]} />
-          <CurrentFavs setFavorites={setFavorites} deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
+        </Flex>
+        <Flex direction="column" alignItems="center">
+          <CurrentFavs deleteAllFavs={deleteAllFavs} setFavorites={setFavorites} deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
         </Flex>
 
       </Box>

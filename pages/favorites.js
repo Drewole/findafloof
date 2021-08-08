@@ -5,8 +5,12 @@ import CurrentFavs from '../components/browse/CurrentFavs'
 import Header from '../components/Header'
 import store from 'store/dist/store.modern.min'
 import Loading from '../components/Loading'
+import { useRouter } from 'next/router'
 
 const favorites = () => {
+    const router = useRouter()
+    console.log(router.query, "Query Value");
+
     const [favorites, setFavorites] = useState(null);
 
     //Get anything from local storage and set it to favs state when the component mounts
@@ -26,9 +30,9 @@ const favorites = () => {
                 <title>Find a Floof | Your Favorites</title>
                 <link rel="icon" href="/logoDog.svg" />
             </Head>
-            <Center>
+            <Flex flexDirection="column" alignItems="center">
                 <CurrentFavs favorites={favorites} />
-            </Center>
+            </Flex>
 
         </Box>
     )

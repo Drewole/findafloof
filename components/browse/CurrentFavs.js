@@ -1,8 +1,9 @@
 import { Box, Wrap, WrapItem, Center, Button, Image, IconButton } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import Link from 'next/link'
 import { XCircleFill } from 'react-bootstrap-icons'
 import DeleteModal from './DeleteModal'
-const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites }) => {
+const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFavs }) => {
     useEffect(() => {
 
     }, [favorites]);
@@ -13,22 +14,31 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites }) => {
 
                 {favorites.length !== 0 ?
                     favorites.map((favorite) => (
+                        <Link
+                            key={favorite.id}
+                            href={{
+                                pathname: '/favorites',
+                                query: { id: favorite.id },
+                            }}
+                        >
+                            <a>
+                                <WrapItem>
+                                    <Image
+                                        src={favorite.primary_photo_cropped.full}
+                                        boxSize="175px"
+                                        objectFit="cover"
+                                        loading="lazy"
+                                        alt={favorite.name}
+                                        borderRadius={12}
+                                        fallbackSrc="https://via.placeholder.com/175"
+                                        boxShadow="lg"
+                                    />
 
-                        <WrapItem key={favorite.id}>
-                            <Image
-                                src={favorite.primary_photo_cropped.full}
-                                boxSize="175px"
-                                objectFit="cover"
-                                loading="lazy"
-                                alt={favorite.name}
-                                borderRadius={12}
-                                fallbackSrc="https://via.placeholder.com/175"
-                                boxShadow="lg"
-                            />
+                                    <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
 
-                            <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
-
-                        </WrapItem>
+                                </WrapItem>
+                            </a>
+                        </Link>
 
                     ))
                     :
@@ -37,7 +47,7 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites }) => {
 
             </Wrap>
 
-            <Center><DeleteModal setFavorites={setFavorites} favorites={favorites} /></Center>
+            <Center><DeleteModal deleteAllFavs={deleteAllFavs} /></Center>
         </>
     )
 }
