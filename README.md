@@ -82,6 +82,7 @@ Wanted to create a fun and easy way to browse adoptable pets. Allows filtering b
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [React](https://reactjs.org/)
 * [Next.js](https://nextjs.org)
+* [Framer Motion](https://www.framer.com/)
 * [Chakra UI](https://chakra-ui.com/)
 * [Bootstrap Icons](https://icons.getbootstrap.com/)
 <!-- * [MySQL](https://mysql.com) -->
@@ -204,6 +205,7 @@ Project Link: [https://github.com/drewole/findafloof](https://github.com/drewole
 ## Acknowledgements
 * [React](https://reactjs.org/)
 * [Next.js](https://nextjs.org)
+* [Framer Motion](https://www.framer.com/)
 * [Chakra UI](https://chakra-ui.com/)
 * [Bootstrap Icons](https://icons.getbootstrap.com/)
 
