@@ -12,6 +12,7 @@ import { TokenContext } from './_app'
 import store from 'store/dist/store.modern.min'
 import FilterForm from '../components/browse/FilterForm'
 import { AnimatePresence, motion } from 'framer-motion'
+import { handleChoice } from '../components/utils'
 
 // 1. Create a custom motion component from Box
 const MotionFlex = motion(Flex);
@@ -88,7 +89,7 @@ export default function Home() {
     setFavorites(newFavs)
   }
 
-  //TODO: Need to move these to a component
+  //TODO: Need to move these to a component as they are being repeated
   // Remove fav when user clicks small circle
   const deleteFromFavorites = (e) => {
     const selectedId = parseInt(e.target.id, 10)

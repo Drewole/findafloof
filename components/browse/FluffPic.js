@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Center, Image, Box, AspectRatio } from '@chakra-ui/react'
-import { motion, useMotionValue, useTransform, AnimatePresence, useCycle } from 'framer-motion'
+import React from 'react'
+import { Image, AspectRatio } from '@chakra-ui/react'
 
 const FluffPic = ({ src }) => {
     console.log(src)
     return (
-        <AspectRatio maxW="600px" ratio={3 / 4}>
+        <AspectRatio maxW="600px" ratio={4 / 5}>
             <Image
                 className="current-fluff"
                 userSelect="none"

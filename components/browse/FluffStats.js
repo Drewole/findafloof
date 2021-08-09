@@ -47,7 +47,7 @@ const FluffStats = (props) => {
                 <Table boxShadow="md" overflow="hidden" backgroundColor="whiteAlpha.600" mt={5} mb={5} w={{ base: "90vw", md: "70vw", lg: "54vw" }} borderRadius="2xl" size="md" variant="simple">
                     <TableCaption fontSize="md" textAlign="left">{props.current.description}</TableCaption>
                     <Thead >
-                        <Tr backgroundColor="purple.100">
+                        <Tr backgroundColor="#e8dff0">
                             <Th color="purple.700">Overview</Th>
                             <Th></Th>
                         </Tr>
