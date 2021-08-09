@@ -23,13 +23,27 @@ nav {
         list-style: none;
 
         a {
-            transition: color 150ms ease-in-out;
-            &:hover {
-                color: $red300;
+            transition: all 150ms ease-in-out;
+            span {
+                transition: opacity 150ms ease-in-out;
+                opacity: 0;
             }
             svg {
                 margin: 0 auto;
+                transform: translateY(5px);
             }
+            
+            &:hover {
+                color: $pink500;
+
+                span {
+                    opacity: 1;
+                }
+                svg {
+                    transform: translateY(0);
+                }
+            }
+            
         }
     }
 

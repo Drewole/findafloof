@@ -3,20 +3,20 @@ import {
     Box
 } from "@chakra-ui/react"
 import Link from 'next/link'
-import { HeartFill, HouseFill, ShareFill } from 'react-bootstrap-icons'
+import { Heart, House, Share } from 'react-bootstrap-icons'
 
 const Nav = () => {
     return (
         <Box as="nav" separator="">
-            <Box as="ul" d="flex">
+            <Box pt="2" justifyContent="space-between" as="ul" d="flex">
                 <Box ml="3" mr="3" as="li" fontSize="xs" color="purple.800">
-                    <Link href="/" ><a><HouseFill size={28} />Browse</a></Link>
+                    <Link href="/" ><a><House size={20} /><Box as="span">Browse</Box></a></Link>
                 </Box>
                 <Box ml="3" mr="3" as="li" fontSize="xs" color="purple.800">
-                    <Link href="/favorites" ><a><HeartFill size={28} />Fav's</a></Link>
+                    <Link href="/favorites" ><a><Heart size={20} /><Box as="span">Fav's</Box></a></Link>
                 </Box>
                 {/* <Box ml="3" mr="3" as="li" fontSize="xs" color="purple.800">
-                    <Link href="/share" ><a><ShareFill size={28} />Share</a></Link>
+                    <Link href="/share" ><a><Share size={20} />Share</a></Link>
                 </Box> */}
             </Box>
         </Box>
