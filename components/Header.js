@@ -5,7 +5,7 @@ import Nav from './Nav'
 
 const Header = () => {
     return (
-        <Box p="5" d="flex" justifyContent="space-between" as="header">
+        <Box px="3" d="flex" justifyContent="space-between" as="header">
             <Logo />
             <Nav />
         </Box>

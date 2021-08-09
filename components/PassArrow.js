@@ -6,7 +6,8 @@ const PassArrow = ({ handleChoice, }) => {
     return (
         <Button
             colorScheme="red"
-            left={35}
+            className="pass-arrow"
+            left={{ base: "70", md: "35", lg: "35" }}
             backgroundColor="red.300"
             p={6}
             height={70}

@@ -25,29 +25,22 @@ export default function Home() {
   const accessToken = useContext(TokenContext);
 
   const getPets = async () => {
-
-    // Search Params - separate with a &
-    // type=dog,cat
-    // location=55437
-    // limit=100
-    // status=adoptable
-    // good_with_children=1 bool
-    // good_with_cats=1 bool
-    // good_with_dogs=1 bool
-    // age=baby,young,adult,senior  
-
-    //TODO: Need to make sure we fetch more results when the results are less than 5
-    //Need to compare the results to the favorites and remove any that are already in the favorites
-    //Need to make sure we are not fetching the same results over and over
-    const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable', {
-      headers: {
-        Authorization: `Bearer ${accessToken.access_token}`,
-      },
-    })
-    console.log("Just fetched")
-    const json = await apiResults.json();
-    const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
-    setResults(filtered);
+    if (results && results.length > 3) {
+      return;
+    } else {
+      //TODO: Need to make sure we fetch more results when the results are less than 5
+      //Need to compare the results to the favorites and remove any that are already in the favorites
+      //Need to make sure we are not fetching the same results over and over
+      const apiResults = await fetch('https://api.petfinder.com/v2/animals?location=55437&limit=100&status=adoptable', {
+        headers: {
+          Authorization: `Bearer ${accessToken.access_token}`,
+        },
+      })
+      console.log("Just fetched")
+      const json = await apiResults.json();
+      const filtered = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
+      setResults(filtered);
+    }
 
   }
 

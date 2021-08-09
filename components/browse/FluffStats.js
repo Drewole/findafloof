@@ -38,7 +38,9 @@ const FluffStats = (props) => {
     return (
 
         <>
-            <Button mt="24px" color="purple.700" backgroundColor="transparent" textTransform="uppercase" size="sm" onClick={handleToggle} mt="1rem">
+            <Button mt="24px" color="purple.700" backgroundColor="transparent"
+                _hover={{ backgroundColor: 'pink.500', transform: 'scale(1.08)', color: 'white' }}
+                textTransform="uppercase" size="sm" onClick={handleToggle} mt="1rem">
                 <ChevronExpand />  <Box ml={1}>{show ? "Hide Details" : "More Details"}</Box>
             </Button>
             <Collapse border="0px" startingHeight={0} className={show == true ? "" : "closed"} in={show}>

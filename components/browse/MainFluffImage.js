@@ -5,6 +5,7 @@ import { CheckLg, XLg } from 'react-bootstrap-icons'
 import { motion, useMotionValue, useTransform, AnimatePresence, useCycle } from 'framer-motion'
 import LikeArrow from '../LikeArrow';
 import PassArrow from '../PassArrow';
+import FluffPic from './FluffPic';
 
 const MotionBox = motion(Box)
 const MainFluffImage = ({ current, handleChoice }) => {
@@ -42,7 +43,7 @@ const MainFluffImage = ({ current, handleChoice }) => {
                     key={current.primary_photo_cropped.full}
                     initial={{ scale: .8, opacity: 0, }}
                     animate={{ scale: 1, opacity: 1, transition: { delay: 1.2 } }}
-                    exit={{ scale: .8, opacity: 0 }}
+                    exit={{ scale: .5, opacity: 0 }}
                 >
                     <Center mt={2}>
                         <PassArrow handleChoice={handleChoice} direction={direction} setDirection={setDirection} />
@@ -53,32 +54,18 @@ const MainFluffImage = ({ current, handleChoice }) => {
                             dragConstraints={{ left: 0, right: 0 }}
                             whileDrag={{ scale: .97 }}
                             onDragEnd={(e) => {
-                                props.handleChoice(checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth))
+                                handleChoice(checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth))
                             }}
                         >
-                            <Image
-                                className="current-fluff"
-                                userSelect="none"
-                                objectFit="cover"
-                                src={current.primary_photo_cropped.full}
-                                width={320}
-                                height={360}
-                                position="relative"
-                                zIndex={0}
-                                boxShadow="xl"
-                                transition="all 0.2s"
-                                transform="scale(1)"
-                                mb={8}
-                                w="100%"
-                                borderRadius={35}
-                            />
+                            <FluffPic src={current.primary_photo_cropped.full} />
                         </MotionBox>
+
                         <LikeArrow handleChoice={handleChoice} direction={direction} setDirection={setDirection} />
                     </Center>
                 </motion.div>
             </AnimatePresence>
             <MobileView>
-                <Center mt={-5} mb={5}><img src="swipe.svg" alt="On mobile, swipe main image left to pass, right to favorite" /></Center>
+                <Center mb={5}><img src="swipe.svg" alt="On mobile, swipe main image left to pass, right to favorite" /></Center>
             </MobileView>
         </>
     )

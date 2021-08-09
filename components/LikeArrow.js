@@ -6,9 +6,10 @@ const LikeArrow = ({ handleChoice }) => {
     return (
         <Button
             colorScheme="green"
+            className="like-arrow"
             backgroundColor="green.300"
             p={6}
-            right={35}
+            right={{ base: "70", md: "35", lg: "35" }}
             _hover={{ cursor: 'pointer' }}
             zIndex={1}
             height={70}
@@ -22,11 +23,11 @@ const LikeArrow = ({ handleChoice }) => {
             position="relative"
             borderColor="white"
             borderWidth={4}
-            borderRadius="50%">
+            borderRadius="50%" >
             <Box as="span" position="relative" zIndex="2">
                 <CheckLg color="DarkGreen" size={30} />
             </Box>
-        </Button>
+        </Button >
     )
 }
 

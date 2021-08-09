@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { XCircleFill } from 'react-bootstrap-icons'
 import DeleteModal from './DeleteModal'
 const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFavs }) => {
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [favorites]);
+    // }, [favorites]);
     return (
         <>
 
@@ -14,15 +14,15 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
 
                 {favorites.length !== 0 ?
                     favorites.map((favorite) => (
-                        <Link
-                            key={favorite.id}
-                            href={{
-                                pathname: '/favorites',
-                                query: { id: favorite.id },
-                            }}
-                        >
-                            <a>
-                                <WrapItem>
+
+                        <WrapItem key={favorite.id}>
+                            <Link
+                                href={{
+                                    pathname: '/favorites',
+                                    query: { id: favorite.id },
+                                }}
+                            >
+                                <a>
                                     <Image
                                         src={favorite.primary_photo_cropped.full}
                                         boxSize="175px"
@@ -33,12 +33,12 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
                                         fallbackSrc="https://via.placeholder.com/175"
                                         boxShadow="lg"
                                     />
+                                </a>
+                            </Link>
 
-                                    <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
+                            <IconButton id={favorite.id} onClick={deleteFromFavorites} colorScheme="blackAlpha" backgroundColor="blackAlpha.200" padding="xs" position="relative" right="35px" top="5px" size="xs" borderRadius="full" color="white" boxShadow="md" padding="0" aria-label="Remove Item" icon={<XCircleFill size={20} pointerEvents="none" />} />
 
-                                </WrapItem>
-                            </a>
-                        </Link>
+                        </WrapItem>
 
                     ))
                     :
