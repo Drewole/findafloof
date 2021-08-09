@@ -111,8 +111,6 @@ const FluffStats = (props) => {
                     </Tbody>
                 </Table>
             </Collapse>
-            {/* <Box className="gradient"></Box> */}
-
         </>
     )
 }

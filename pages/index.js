@@ -85,7 +85,8 @@ export default function Home() {
   //Add current item to favs array
   const addToFavs = () => {
     const newFavs = store.get('favs') || []
-    newFavs.push(results[0])
+    const checkFavsForDups = newFavs.find(fav => fav.id === results[0].id)
+    checkFavsForDups ? nextAnimal() : newFavs.push(results[0])
     setFavorites(newFavs)
   }
 

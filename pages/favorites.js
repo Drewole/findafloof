@@ -37,7 +37,7 @@ const favorites = () => {
 
     if (favorites === null) return <Loading />;
     return (
-        <Box height="100vh" alignItems="center" className="container">
+        <Box overflow="hidden" backgroundColor="purple.50" p="2" minHeight="100vh" className="container">
             <Header />
             <Head as="h1" size="2xl" mb="2">
                 <title>Find a Floof | Your Favorites</title>
