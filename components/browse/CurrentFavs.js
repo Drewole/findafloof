@@ -1,4 +1,4 @@
-import { Box, Wrap, WrapItem, Center, Button, Image, IconButton } from '@chakra-ui/react'
+import { Box, Wrap, WrapItem, Center, AspectRatio, Image, IconButton } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { XCircleFill } from 'react-bootstrap-icons'
@@ -8,13 +8,13 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
 
     // }, [favorites]);
     return (
-        <>
 
-            <Wrap justify="center" p={5} mb={5} mt={10} alignItems="flex-start" spacing="20px" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "96vw", md: "88vw", lg: "82vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
+        <Wrap justify="center" p={5} mb={5} mt={10} alignItems="flex-start" spacing="20px" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "96vw", md: "88vw", lg: "82vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
 
-                {favorites.length !== 0 ?
-                    favorites.map((favorite) => (
+            {favorites.length !== 0 ?
+                favorites.map((favorite) => (
 
+                    <>
                         <WrapItem key={favorite.id}>
                             <Link
                                 href={{
@@ -23,16 +23,17 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
                                 }}
                             >
                                 <a>
-                                    <Image
-                                        src={favorite.primary_photo_cropped.full}
-                                        boxSize="175px"
-                                        objectFit="cover"
-                                        loading="lazy"
-                                        alt={favorite.name}
-                                        borderRadius={12}
-                                        fallbackSrc="https://via.placeholder.com/175"
-                                        boxShadow="lg"
-                                    />
+                                    <AspectRatio minW={175} maxW={250} ratio="1">
+                                        <Image
+                                            src={favorite.primary_photo_cropped.full}
+                                            objectFit="cover"
+                                            loading="lazy"
+                                            alt={favorite.name}
+                                            borderRadius={12}
+                                            fallbackSrc="https://via.placeholder.com/175"
+                                            boxShadow="lg"
+                                        />
+                                    </AspectRatio>
                                 </a>
                             </Link>
 
@@ -40,15 +41,22 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
 
                         </WrapItem>
 
-                    ))
+                    </>
+                ))
+
+                :
+                <Center><Box fontSize="sm" fontWeight="bold" textTransform="uppercase" textAlign="center" color="blackAlpha.500" as="p">Add some favorites</Box></Center>
+            }
+            {
+                favorites.length !== 0 ?
+                    <Box flexBasis="100%">
+                        <Center><DeleteModal deleteAllFavs={deleteAllFavs} /></Center>
+                    </Box>
                     :
-                    <Center><Box fontSize="sm" fontWeight="bold" textTransform="uppercase" textAlign="center" color="blackAlpha.500" as="p">Add some favorites</Box></Center>
-                }
+                    null
+            }
+        </Wrap >
 
-            </Wrap>
-
-            <Center><DeleteModal deleteAllFavs={deleteAllFavs} /></Center>
-        </>
     )
 }
 
