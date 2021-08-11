@@ -2,7 +2,6 @@ import React from 'react'
 import { Image, AspectRatio } from '@chakra-ui/react'
 
 const FluffPic = ({ src }) => {
-    console.log(src)
     return (
         <AspectRatio maxW="600px" ratio={4 / 5}>
             <Image

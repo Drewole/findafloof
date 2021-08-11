@@ -39,30 +39,32 @@ const MainFluffImage = ({ current, handleChoice }) => {
     return (
         <>
             <AnimatePresence>
-                <motion.div
+                {/* <motion.div
                     key={current.primary_photo_cropped.full}
                     initial={{ scale: .8, opacity: 0, }}
                     animate={{ scale: 1, opacity: 1, transition: { delay: 1.2 } }}
                     exit={{ scale: .5, opacity: 0 }}
-                >
-                    <Center mt={2}>
-                        <PassArrow handleChoice={handleChoice} direction={direction} setDirection={setDirection} />
-                        <MotionBox
-                            drag="x"
-                            minHeight={370}
-                            minWidth={290}
-                            dragConstraints={{ left: 0, right: 0 }}
-                            whileDrag={{ scale: .97 }}
-                            onDragEnd={(e) => {
-                                handleChoice(checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth))
-                            }}
-                        >
-                            <FluffPic src={current.primary_photo_cropped.full} />
-                        </MotionBox>
+                > */}
+                <Center mt={2}>
+                    <PassArrow handleChoice={handleChoice} direction={direction} setDirection={setDirection} />
+                    <MotionBox
+                        drag="x"
+                        minHeight={370}
+                        minWidth={290}
+                        dragConstraints={{ left: 0, right: 0 }}
+                        whileDrag={{ scale: .97 }}
+                        dragDirectionLock
+                        drag="x"
+                        onDragEnd={(e) => {
+                            handleChoice(checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth))
+                        }}
+                    >
+                        <FluffPic src={current.primary_photo_cropped.full} />
+                    </MotionBox>
 
-                        <LikeArrow handleChoice={handleChoice} direction={direction} setDirection={setDirection} />
-                    </Center>
-                </motion.div>
+                    <LikeArrow handleChoice={handleChoice} direction={direction} setDirection={setDirection} />
+                </Center>
+                {/* </motion.div> */}
             </AnimatePresence>
             <MobileView>
                 <Center mb={5}><img src="swipe.svg" alt="On mobile, swipe main image left to pass, right to favorite" /></Center>

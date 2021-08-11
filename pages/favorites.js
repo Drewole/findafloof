@@ -1,4 +1,4 @@
-import { Flex, Container, Link, Box, Center, Button } from '@chakra-ui/react'
+import { Flex, Container, Link, Box, Center, Button, AspectRatio } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import CurrentFavs from '../components/browse/CurrentFavs'
@@ -7,21 +7,42 @@ import store from 'store/dist/store.modern.min'
 import Loading from '../components/Loading'
 import { useRouter } from 'next/router'
 import { ArrowLeftCircle } from 'react-bootstrap-icons'
+import FluffPic from '../components/browse/FluffPic'
+import { deleteFromFavorites } from './index'
 
 const favorites = () => {
     const router = useRouter()
-    console.log(router.query.id, "Query Value");
+    const [favorites, setFavorites] = useState([]);
+    const [currentId, setCurrentId] = useState(router.query.id);
+    const [currentFluff, setCurrentFluff] = useState([]);
 
-    const [favorites, setFavorites] = useState(null);
+    // console.log(router.query.id, "Query Value");
+    console.log(favorites[0], "Highlight Fav");
+
+    // router.query.id ? setCurrentId(router.query.id) : setCurrentId(favorites[0].id);
 
     //Get anything from local storage and set it to favs state when the component mounts
     useEffect(() => {
         setFavorites(store.get('favs'))
+        console.log(currentFluff, "Current Fluff");
+        const x = currentItem(currentId)
+        setCurrentFluff(x)
+
     }, [])
     //When the favs state changes, save it to local storage
     useEffect(() => {
         store.set('favs', favorites)
     }, [favorites])
+    // When the currentId state changes, reload the component
+    useEffect(() => {
+        const item = currentItem(currentId)
+        console.log(item, "Current Item");
+    }, [currentId])
+
+    const currentItem = (currId) => {
+        const theItem = favorites.find(x => x.id === currId)
+        return theItem;
+    }
 
     //TODO: Need to move these to a component as they are being repeated
     // Remove fav when user clicks small circle
@@ -35,30 +56,37 @@ const favorites = () => {
         setFavorites([]);
     }
 
-    if (favorites === null) return <Loading />;
     return (
         <Box overflow="hidden" backgroundColor="purple.50" p="2" minHeight="100vh" className="container">
-            <Header />
             <Head as="h1" size="2xl" mb="2">
                 <title>Find a Floof | Your Favorites</title>
                 <link rel="icon" href="/logoDog.svg" />
             </Head>
-            <Flex flexDirection="column" alignItems="center">
-                <CurrentFavs deleteAllFavs={deleteAllFavs} setFavorites={setFavorites} deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
-            </Flex>
-            <Center>
-                <Link href="/" >
-                    {/* //TODO: Need to fix the underline on hover, textDecoration isn't working */}
-                    <Button mt="24px" color="purple.700" backgroundColor="transparent"
-                        _hover={{ backgroundColor: 'pink.500', transform: 'scale(1.08)', color: 'white', textDecoration: 'none' }}
-                        textTransform="uppercase" size="sm">
-                        <ArrowLeftCircle />&nbsp; <a>Back to Browse</a>
-                    </Button>
+            <Header />
+            <Box className="browse" minHeight="100vh">
+                <Flex justifyContent="center" alignItems="center">
+                    <Box className="picture">
+                        {/* <FluffPic src={currentFluff.primary_photo_cropped.full} /> */}
 
-                </Link>
-            </Center>
+                    </Box>
+                    <Box className="info">
+                        <p>This will be the information</p>
+                    </Box>
+                </Flex>
+                <Flex flexDirection="column" alignItems="center">
+                    <CurrentFavs key={favorites.id} deleteAllFavs={deleteAllFavs} setFavorites={setFavorites} deleteFromFavorites={deleteFromFavorites} favorites={favorites} />
+                </Flex>
+                <Center>
 
-        </Box >
+                    <Link display="flex" fontSize="sm" fontWeight="bold" padding={3} as="button" href="/" mt="24px" borderRadius={6} color="purple.700" backgroundColor="transparent"
+                        _hover={{ backgroundColor: 'pink.500', transform: 'scale(1.08)', color: 'white', textDecoration: 'none', boxShadow: 'md' }}
+                        textTransform="uppercase" size="sm" >
+                        <Box as="span"><ArrowLeftCircle size={22} /></Box>&nbsp; Back to Browse
+                    </Link>
+
+                </Center>
+            </Box>
+        </Box>
     )
 }
 
