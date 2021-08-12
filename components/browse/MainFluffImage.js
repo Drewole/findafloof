@@ -53,8 +53,10 @@ const MainFluffImage = ({ current, handleChoice }) => {
                         minWidth={290}
                         dragConstraints={{ left: 0, right: 0 }}
                         whileDrag={{ scale: .97 }}
-                        dragDirectionLock
+                        elastic={{ x: .2, y: false }}
                         drag="x"
+                        dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
+                        dragMomentum={{ friction: .5 }}
                         onDragEnd={(e) => {
                             handleChoice(checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth))
                         }}
@@ -66,9 +68,9 @@ const MainFluffImage = ({ current, handleChoice }) => {
                 </Center>
                 {/* </motion.div> */}
             </AnimatePresence>
-            <MobileView>
+            {/* <MobileView>
                 <Center mb={5}><img src="swipe.svg" alt="On mobile, swipe main image left to pass, right to favorite" /></Center>
-            </MobileView>
+            </MobileView> */}
         </>
     )
 }

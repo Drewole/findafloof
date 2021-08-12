@@ -1,14 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Checkbox,
     CheckboxGroup,
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
     Switch,
     Center,
-    Container,
     Collapse,
     Button,
     Stack,
@@ -17,21 +14,41 @@ import {
     Flex,
     Divider
 } from "@chakra-ui/react"
+import store from 'store/dist/store.modern.min'
 import { FilterSquare, Search } from 'react-bootstrap-icons'
+
+// Search Params - separate with a &
+// type=dog,cat
+// location=55437
+// limit=100
+// status=adoptable
+// good_with_children=1 bool
+// good_with_cats=1 bool
+// good_with_dogs=1 bool
+// age=baby,young,adult,senior
 
 const FilterForm = () => {
 
-    const [show, setShow] = React.useState(false)
+    const [show, setShow] = useState(false)
     const handleToggle = () => setShow(!show)
-    // Search Params - separate with a &
-    // type=dog,cat
-    // location=55437
-    // limit=100
-    // status=adoptable
-    // good_with_children=1 bool
-    // good_with_cats=1 bool
-    // good_with_dogs=1 bool
-    // age=baby,young,adult,senior
+
+    const initialState = {
+        dog: true,
+        cat: true,
+        location: "",
+        good_with_children: false,
+        good_with_dogs: false,
+        good_with_cats: false,
+        baby: true,
+        young: true,
+        adult: true,
+        senior: true
+    }
+    const [searchOptions, setSearchOptions] = useState(store.get('searchOptions') || initialState)
+
+    useEffect(() => {
+        store.set('searchOptions', searchOptions)
+    }, [searchOptions]);
 
     return (
         <div>
@@ -40,7 +57,7 @@ const FilterForm = () => {
                     cursor: 'pointer',
                     transform: 'scale(1.25)',
                     color: '#pink.700'
-                }} outline="none" colorScheme="transparent" size="sm" onClick={handleToggle} mt="1rem">
+                }} _focus={{ outline: 'none' }} colorScheme="transparent" size="sm" onClick={handleToggle} mt="1rem">
                     <FilterSquare size={16} color="rgba(0,0,0,.4)" />  <Box color="blackAlpha.400" ml={1}>Filter Floofs</Box>
                 </Button>
             </Center>
@@ -54,14 +71,14 @@ const FilterForm = () => {
                             </Box>
                             <Divider />
                             <Flex alignItems="center" flexWrap="wrap" justifyContent="space-evenly">
-                                <CheckboxGroup colorScheme="purple" id="type" defaultValue={["dog", "cat"]}>
+                                <CheckboxGroup colorScheme="purple" id="type" >
 
-                                    <Checkbox p={3} size="lg" value="dog" >
+                                    <Checkbox defaultChecked p={3} size="lg" >
                                         Dogs
                                     </Checkbox>
                                     <Divider height={10} orientation="vertical" />
 
-                                    <Checkbox p={3} size="lg" value="cat">
+                                    <Checkbox defaultChecked p={3} size="lg" >
                                         Cats
                                     </Checkbox>
                                 </CheckboxGroup>
@@ -100,13 +117,13 @@ const FilterForm = () => {
                             <Box as="h3">Age</Box>
                             <Flex>
                                 <Flex>
-                                    <Switch size="lg" colorScheme="purple" id="baby" />
+                                    <Switch size="lg" defaultChecked colorScheme="purple" id="baby" />
                                     <FormLabel ml={2} htmlFor="baby" mb="0">
                                         Baby
                                     </FormLabel>
                                 </Flex>
                                 <Flex>
-                                    <Switch size="lg" colorScheme="purple" id="young" />
+                                    <Switch size size="lg" defaultChecked colorScheme="purple" id="young" />
                                     <FormLabel ml={2} htmlFor="young" mb="0">
                                         Young
                                     </FormLabel>
@@ -114,13 +131,13 @@ const FilterForm = () => {
                             </Flex>
                             <Flex>
                                 <Flex>
-                                    <Switch size="lg" colorScheme="purple" id="adult" />
+                                    <Switch size size="lg" defaultChecked colorScheme="purple" id="adult" />
                                     <FormLabel ml={2} htmlFor="adult" mb="0">
                                         Adult
                                     </FormLabel>
                                 </Flex>
                                 <Flex>
-                                    <Switch size="lg" colorScheme="purple" id="senior" />
+                                    <Switch size size="lg" defaultChecked colorScheme="purple" id="senior" />
                                     <FormLabel ml={2} htmlFor="senior" mb="0">
                                         Senior
                                     </FormLabel>

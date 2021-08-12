@@ -22,7 +22,7 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
                             }}
                         >
                             <a>
-                                <AspectRatio minW={175} maxW={250} ratio="1">
+                                <AspectRatio minW={210} maxW={250} ratio="1">
                                     <Image
                                         src={favorite.primary_photo_cropped.full}
                                         transform="scale(1)"

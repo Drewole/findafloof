@@ -8,7 +8,7 @@ import Loading from '../components/Loading'
 import { useRouter } from 'next/router'
 import { ArrowLeftCircle } from 'react-bootstrap-icons'
 import FluffPic from '../components/browse/FluffPic'
-import { deleteFromFavorites } from './index'
+import Footer from '../components/Footer'
 
 const favorites = () => {
     const router = useRouter()
@@ -24,9 +24,9 @@ const favorites = () => {
     //Get anything from local storage and set it to favs state when the component mounts
     useEffect(() => {
         setFavorites(store.get('favs'))
-        console.log(currentFluff, "Current Fluff");
         const x = currentItem(currentId)
         setCurrentFluff(x)
+        console.log(currentFluff, "Current fluff")
 
     }, [])
     //When the favs state changes, save it to local storage
@@ -86,6 +86,7 @@ const favorites = () => {
 
                 </Center>
             </Box>
+            <Footer />
         </Box>
     )
 }
