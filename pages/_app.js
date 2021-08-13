@@ -1,38 +1,38 @@
 import { theme, CSSReset, ChakraProvider } from '@chakra-ui/react'
 import { motion } from 'framer-motion';
-import { useEffect, createContext, useState } from 'react'
+// import { useEffect, createContext, useState } from 'react'
 
 import './../scss/general.scss'
-export const TokenContext = createContext()
+// export const TokenContext = createContext()
 
 function App({ Component, pageProps, router }) {
-    const [accessToken, setAccessToken] = useState(null);
+    // const [accessToken, setAccessToken] = useState(null);
 
-    useEffect(() => {
-        const fetchAccessToken = async () => {
-            const res = await fetch(`/api/oauth-token`);
-            const json = await res.json();
-            setAccessToken(json);
-        };
-        fetchAccessToken();
-    }, []);
+    // useEffect(() => {
+    //     const fetchAccessToken = async () => {
+    //         const res = await fetch(`/api/oauth-token`);
+    //         const json = await res.json();
+    //         setAccessToken(json);
+    //     };
+    //     fetchAccessToken();
+    // }, []);
 
     return (
         <ChakraProvider theme={theme}>
 
             <CSSReset />
-            <TokenContext.Provider value={accessToken}>
-                <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
-                    pageInitial: {
-                        opacity: 0,
-                    },
-                    pageAnimate: {
-                        opacity: 1,
-                    },
-                }}>
-                    <Component {...pageProps} />
-                </motion.div>
-            </TokenContext.Provider>
+            {/* <TokenContext.Provider value={accessToken}> */}
+            <motion.div key={router.route} initial="pageInitial" animate="pageAnimate" variants={{
+                pageInitial: {
+                    opacity: 0,
+                },
+                pageAnimate: {
+                    opacity: 1,
+                },
+            }}>
+                <Component {...pageProps} />
+            </motion.div>
+            {/* </TokenContext.Provider> */}
         </ChakraProvider>
 
     )

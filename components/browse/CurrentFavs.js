@@ -11,7 +11,7 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
 
         <Wrap justify="center" p={5} mb={5} mt={10} alignItems="flex-start" spacing="20px" background="blackAlpha.50" boxShadow="inset 0px 2px 4px rgba(0, 0, 0, 0.06)" w={{ base: "96vw", md: "88vw", lg: "82vw" }} border="2px" borderRadius="2xl" borderColor="blackAlpha.100">
 
-            {favorites.length !== 0 ?
+            {favorites ?
                 favorites.map((favorite) => (
 
                     <WrapItem key={favorite.id}>
@@ -49,7 +49,7 @@ const CurrentFavs = ({ setFavorites, favorites, deleteFromFavorites, deleteAllFa
                 <Center><Box fontSize="sm" fontWeight="bold" textTransform="uppercase" textAlign="center" color="blackAlpha.500" as="p">Add some favorites</Box></Center>
             }
             {
-                favorites.length !== 0 ?
+                favorites ?
                     <Box flexBasis="100%">
                         <Center><DeleteModal deleteAllFavs={deleteAllFavs} /></Center>
                     </Box>

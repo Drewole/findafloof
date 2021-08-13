@@ -23,12 +23,13 @@ nav {
         list-style: none;
 
         a {
-            transition: all 150ms ease-in-out;
+            transition: all 2ms ease-in-out;
             span {
                 transition: opacity 150ms ease-in-out;
                 opacity: 0;
             }
             svg {
+                transition: transform 2ms ease-in-out;
                 margin: 0 auto;
                 transform: translateY(5px);
             }
