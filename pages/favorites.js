@@ -16,15 +16,13 @@ const favorites = () => {
     const [currentId, setCurrentId] = useState(router.query.id);
     const [currentFluff, setCurrentFluff] = useState([]);
 
-    // console.log(router.query.id, "Query Value");
-    console.log(favorites[0], "Highlight Fav");
-
     // router.query.id ? setCurrentId(router.query.id) : setCurrentId(favorites[0].id);
 
     //Get anything from local storage and set it to favs state when the component mounts
     useEffect(() => {
         setFavorites(store.get('favs'))
         const x = currentItem(currentId)
+        console.log(x, "Current Item")
         setCurrentFluff(x)
         console.log(currentFluff, "Current fluff")
 
