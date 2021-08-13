@@ -32,8 +32,6 @@ export default function Home({ data }) {
     store.set('favs', favorites)
   }, [favorites])
 
-  if (results === null) return <Loading />;
-
   //Handle the choice of the user
   const handleChoice = (direction) => {
     if (direction === 'left') {
@@ -166,9 +164,10 @@ export async function getStaticProps(context) {
   // animalAges.length > 0 ? searchString += `&age=${animalAges}` : null;
   // animalType.length > 0 ? searchString += `&type=${animalType}` : null;
 
-  console.log(searchString, 'search string')
+  // console.log(searchString, 'search string')
 
   const accessToken = await fetchAccessToken()
+
   const apiResults = await fetch('https://api.petfinder.com/v2/animals?limit=50&status=adoptable&location=55437',
 
     {
@@ -176,6 +175,7 @@ export async function getStaticProps(context) {
         Authorization: `Bearer ${accessToken.access_token}`,
       },
     })
+  if (apiResults === null) return <Loading />;
   console.log("Just fetched")
   const json = await apiResults.json();
   const data = await json.animals.filter(animal => animal.primary_photo_cropped !== null);
