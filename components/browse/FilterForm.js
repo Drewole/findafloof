@@ -17,53 +17,44 @@ import {
 import store from 'store/dist/store.modern.min'
 import { FilterSquare, Search } from 'react-bootstrap-icons'
 
-// Search Params - separate with a &
-// type=dog,cat
-// location=55437
-// limit=100
-// status=adoptable
-// good_with_children=1 bool
-// good_with_cats=1 bool
-// good_with_dogs=1 bool
-// age=baby,young,adult,senior
-
 const FilterForm = () => {
 
     const [show, setShow] = useState(false)
     const handleToggle = () => setShow(!show)
 
-    const initialState = {
-        dog: true,
-        cat: true,
-        location: 55555,
-        good_with_children: false,
-        good_with_dogs: false,
-        good_with_cats: false,
-        baby: true,
-        young: true,
+    const initialSearchPrefs = {
+        dogs: true,
+        cats: true,
+        location: "",
+        goodWithChildren: "",
+        goodWithDogs: "",
+        goodWithCats: "",
+        baby: "",
+        young: "",
         adult: true,
         senior: true
     }
-    const [searchPrefs, setSearchPrefs] = useState(store.get('searchPrefs') || null)
-    const [dogs, setDogs] = useState(store.get('searchDogs') || true)
-    const [cats, setCats] = useState(store.get('searchCats') || true)
-    const [location, setLocation] = useState(store.get('searchLocation') || "")
-    const [goodWithChildren, setGoodWithChildren] = useState(store.get('searchGoodWithChildren') || false)
-    const [goodWithCats, setGoodWithCats] = useState(store.get('searchGoodWithCats') || false)
-    const [goodWithDogs, setGoodWithDogs] = useState(store.get('searchGoodWithDogs') || false)
-    const [ageBaby, setAgeBaby] = useState(store.get('searchAgeBaby') || true)
-    const [ageYoung, setAgeYoung] = useState(store.get('searchAgeYoung') || true)
-    const [ageAdult, setAgeAdult] = useState(store.get('searchAgeAdult') || true)
-    const [ageSenior, setAgeSenior] = useState(store.get('searchAgeSenior') || true)
+
+    const [searchPrefs, setSearchPrefs] = useState(initialSearchPrefs)
+    const updateField = e => {
+        setSearchPrefs({
+            ...searchPrefs,
+            [e.target.name]: e.target.checked || e.target.value
+        });
+    };
+    useEffect(() => {
+        store.get("searchPrefs") ? setSearchPrefs(store.get("searchPrefs")) : "";
+    }, [])
 
     useEffect(() => {
-        setSearchPrefs(searchPrefs)
+
         store.set('searchPrefs', searchPrefs)
+        console.log(searchPrefs, 'search prefs')
     }, [searchPrefs]);
 
     return (
         <div>
-            <Center >
+            <Center mb={2} >
                 <Button _hover={{
                     cursor: 'pointer',
                     transform: 'scale(1.25)',
@@ -74,49 +65,52 @@ const FilterForm = () => {
             </Center>
             <Center>
                 <Collapse border="0px" startingHeight={0} className={show == true ? "" : "closed"} in={show}>
+
                     <FormControl boxShadow="md" mb={30} backgroundColor="whiteAlpha.600" borderWidth="1px" borderColor="blackAlpha.100" borderRadius={35} justifyContent="center" w={{ base: "90vw", md: "70vw", lg: "54vw" }} flexWrap="wrap" display="flex" alignItems="flex-start">
 
                         <Box minWidth="300px" p={5}>
                             <Box textAlign="center" as="p">
-                                Type
+                                Include Animal Type
                             </Box>
                             <Divider />
                             <Flex alignItems="center" flexWrap="wrap" justifyContent="space-evenly">
                                 <CheckboxGroup colorScheme="purple" id="type" >
 
-                                    <Checkbox checked={dogs} onChange={(e) => setDogs(e.target.checked)} defaultChecked p={3} size="lg" >
+                                    <Checkbox name="dogs" isChecked={searchPrefs.dogs} onChange={updateField} p={3} size="lg" >
                                         Dogs
                                     </Checkbox>
                                     <Divider height={10} orientation="vertical" />
 
-                                    <Checkbox checked={cats} onChange={(e) => setCats(e.target.checked)} defaultChecked p={3} size="lg" >
+                                    <Checkbox name="cats" isChecked={searchPrefs.cats} onChange={updateField} p={3} size="lg" >
                                         Cats
                                     </Checkbox>
+
                                 </CheckboxGroup>
                             </Flex>
+                            <Box as="p" fontSize="x-small" fontWeight="black" textAlign="center" textTransform="uppercase" color="blackAlpha.500">Unselect Both for All Animals</Box>
                         </Box>
                         <Stack p={5} minWidth="300px" spacing={2}>
                             <FormLabel ml={2} htmlFor="location" mb="0">
                                 Location
                             </FormLabel>
-                            <Input value={location} onChange={(e) => setLocation(e.target.value)} borderWidth="2px" id="location" borderColor="blackAlpha.300" placeholder="Zipcode" size="md" />
+                            <Input name="location" focusBorderColor="purple.300" maxLength={5} value={searchPrefs.location} onChange={updateField} borderWidth="2px" id="location" borderColor="blackAlpha.300" placeholder="Zipcode" size="md" />
                         </Stack>
                         <Stack p={5} spacing={2} minWidth="300px">
-                            <Box as="h3">Behavior</Box>
+                            <Box as="h3">They Must Be...</Box>
                             <Flex>
-                                <Switch checked={goodWithChildren} onChange={(e) => setGoodWithChildren(e.target.checked)} size="lg" colorScheme="purple" id="good-with-children" />
+                                <Switch name="goodWithChildren" isChecked={searchPrefs.goodWithChildren} onChange={updateField} size="lg" colorScheme="purple" id="good-with-children" />
                                 <FormLabel ml={2} htmlFor="good-with-children" mb="0">
                                     Good With Children
                                 </FormLabel>
                             </Flex>
                             <Flex>
-                                <Switch checked={goodWithCats} onChange={(e) => setGoodWithCats(e.target.checked)} size="lg" colorScheme="purple" id="good-with-cats" />
+                                <Switch name="goodWithCats" isChecked={searchPrefs.goodWithCats} onChange={updateField} size="lg" colorScheme="purple" id="good-with-cats" />
                                 <FormLabel ml={2} htmlFor="good-with-cats" mb="0">
                                     Good With Cats
                                 </FormLabel>
                             </Flex>
                             <Flex>
-                                <Switch checked={goodWithDogs} onChange={(e) => setGoodWithDogs(e.target.checked)} size="lg" colorScheme="purple" id="good-with-dogs" />
+                                <Switch name="goodWithDogs" isChecked={searchPrefs.goodWithDogs} onChange={updateField} size="lg" colorScheme="purple" id="good-with-dogs" />
                                 <FormLabel ml={2} htmlFor="good-with-dogs" mb="0">
                                     Good With Dogs
                                 </FormLabel>
@@ -125,16 +119,16 @@ const FilterForm = () => {
                         </Stack>
 
                         <Stack p={5} spacing={2} minWidth="300px">
-                            <Box as="h3">Age</Box>
+                            <Box as="h3">Include Ages</Box>
                             <Flex>
                                 <Flex>
-                                    <Switch checked={ageBaby} onChange={(e) => setAgeBaby(e.target.checked)} size="lg" defaultChecked colorScheme="purple" id="baby" />
+                                    <Switch name="baby" isChecked={searchPrefs.baby} onChange={updateField} size="lg" colorScheme="purple" id="baby" />
                                     <FormLabel ml={2} htmlFor="baby" mb="0">
                                         Baby
                                     </FormLabel>
                                 </Flex>
                                 <Flex>
-                                    <Switch checked={ageYoung} onChange={(e) => setAgeYoung(e.target.checked)} size size="lg" defaultChecked colorScheme="purple" id="young" />
+                                    <Switch name="young" isChecked={searchPrefs.young} onChange={updateField} size size="lg" colorScheme="purple" id="young" />
                                     <FormLabel ml={2} htmlFor="young" mb="0">
                                         Young
                                     </FormLabel>
@@ -142,13 +136,13 @@ const FilterForm = () => {
                             </Flex>
                             <Flex>
                                 <Flex>
-                                    <Switch checked={ageAdult} onChange={(e) => setAgeAdult(e.target.checked)} size size="lg" defaultChecked colorScheme="purple" id="adult" />
+                                    <Switch name="adult" isChecked={searchPrefs.adult} onChange={updateField} size size="lg" colorScheme="purple" id="adult" />
                                     <FormLabel ml={2} htmlFor="adult" mb="0">
                                         Adult
                                     </FormLabel>
                                 </Flex>
                                 <Flex>
-                                    <Switch checked={ageSenior} onChange={(e) => setAgeSenior(e.target.checked)} size size="lg" defaultChecked colorScheme="purple" id="senior" />
+                                    <Switch name="senior" isChecked={searchPrefs.senior} onChange={updateField} size size="lg" colorScheme="purple" id="senior" />
                                     <FormLabel ml={2} htmlFor="senior" mb="0">
                                         Senior
                                     </FormLabel>

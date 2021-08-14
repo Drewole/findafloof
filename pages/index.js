@@ -17,6 +17,7 @@ import { server } from '../components/utils'
 // 1. Create a custom motion component from Box
 const MotionFlex = motion(Flex);
 const MotionBox = motion(Box);
+const SearchParams = store.get('searchPrefs')
 
 export default function Home({ data }) {
   const [results, setResults] = useState(data);
@@ -123,44 +124,24 @@ export async function getStaticProps(context) {
     return json
   };
   // Search Params - separate with a &
-  // type=dog,cat
-  // location=55437
-  // limit=100
-  // status=adoptable
-  // good_with_children=1 bool
-  // good_with_cats=1 bool
-  // good_with_dogs=1 bool
-  // age=baby,young,adult,senior
-  // const initialState = {
-  //   dog: true,
-  //   cat: true,
-  //   location: "",
-  //   good_with_children: false,
-  //   good_with_dogs: false,
-  //   good_with_cats: false,
-  //   baby: true,
-  //   young: true,
-  //   adult: true,
-  //   senior: true
-  // }
-  const sPrefs = store.get('searchPrefs');
-  console.log(sPrefs)
-  let searchString = "boo";
-  let animalType = "";
-  let animalAges = "";
 
-  // sPrefs.dog ? animalType += `dog` : null;
-  // sPrefs.cat && animalType.length > 0 ? animalType += `,cat` : animalType += `cat`;
+  // const searchPrefs = await store.get('searchPrefs');
+  // let searchString = "";
+  // let animalType = "";
+  // let animalAges = "";
 
-  // sPrefs.baby && animalAges.length > 0 ? animalAges += `,baby` : animalAges += `baby`;
-  // sPrefs.young && animalAges.length > 0 ? animalAges += `,young` : animalAges += `young`;
-  // sPrefs.adult && animalAges.length > 0 ? animalAges += `,adult` : animalAges += `adult`;
-  // sPrefs.senior && animalAges.length > 0 ? animalAges += `,senior` : animalAges += `senior`;
+  // searchPrefs.dog ? animalType += `dog` : null;
+  // searchPrefs.cat && animalType.length > 0 ? animalType += `,cat` : animalType += `cat`;
 
-  // sPrefs.location ? searchString += `&location=${location}` : null;
-  // sPrefs.good_with_children ? searchString += `&good_with_children=1` : null;
-  // sPrefs.good_with_cats ? searchString += `&good_with_cats=1` : null;
-  // sPrefs.good_with_dogs ? searchString += `&good_with_dogs=1` : null;
+  // searchPrefs.baby && animalAges.length > 0 ? animalAges += `,baby` : animalAges += `baby`;
+  // searchPrefs.young && animalAges.length > 0 ? animalAges += `,young` : animalAges += `young`;
+  // searchPrefs.adult && animalAges.length > 0 ? animalAges += `,adult` : animalAges += `adult`;
+  // searchPrefs.senior && animalAges.length > 0 ? animalAges += `,senior` : animalAges += `senior`;
+
+  // searchPrefs.location ? searchString += `&location=${location}` : null;
+  // searchPrefs.good_with_children ? searchString += `&good_with_children=1` : null;
+  // searchPrefs.good_with_cats ? searchString += `&good_with_cats=1` : null;
+  // searchPrefs.good_with_dogs ? searchString += `&good_with_dogs=1` : null;
   // animalAges.length > 0 ? searchString += `&age=${animalAges}` : null;
   // animalType.length > 0 ? searchString += `&type=${animalType}` : null;
 
@@ -168,7 +149,7 @@ export async function getStaticProps(context) {
 
   const accessToken = await fetchAccessToken()
 
-  const apiResults = await fetch('https://api.petfinder.com/v2/animals?limit=50&status=adoptable&location=55437',
+  const apiResults = await fetch(`https://api.petfinder.com/v2/animals?limit=100&status=adoptable&${SearchParams}`,
 
     {
       headers: {
