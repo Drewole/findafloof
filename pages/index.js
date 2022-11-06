@@ -1,4 +1,3 @@
-import { Box, Flex, Center } from '@chakra-ui/react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
@@ -7,16 +6,15 @@ import FluffStats from '../components/browse/FluffStats';
 import CurrentFavs from '../components/browse/CurrentFavs';
 import MainFluffImage from '../components/browse/MainFluffImage';
 import Name from '../components/browse/Name';
-import React, { useState, useEffect, useContext } from 'react';
-import { TokenContext } from './_app';
+import React, { useState, useEffect } from 'react';
 import store from 'store/dist/store.modern.min';
-// import FilterForm from '../components/browse/FilterForm';
 import { AnimatePresence, motion } from 'framer-motion';
-import { server } from '../components/utils/config';
+// import { TokenContext } from './_app';
+// import FilterForm from '../components/browse/FilterForm';
+// import { server } from '../components/utils/config';
 
 // 1. Create a custom motion component from Box
-const MotionFlex = motion(Flex);
-const MotionBox = motion(Box);
+const MotionBox = motion('div');
 const SearchParams = store.get('searchPrefs');
 
 export default function Home({ data }) {
@@ -88,10 +86,16 @@ export default function Home({ data }) {
       <div className="browse">
         <div>{/* <FilterForm /> */}</div>
         <AnimatePresence>
-          <div className="animation-wrapper">
+          <MotionBox
+            key={results[0].id}
+            initial={{ scale: 0.8, opacity: 0, y: -100 }}
+            animate={{ scale: 1, opacity: 1, y: 0, transition: { delay: 0.5 } }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            overflow="hidden"
+          >
             <MainFluffImage current={results[0]} handleChoice={handleChoice} />
             <Name current={results[0]} />
-          </div>
+          </MotionBox>
         </AnimatePresence>
 
         <div className="stats-wrapper">
