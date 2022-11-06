@@ -1,46 +1,34 @@
-import React, { useEffect } from 'react'
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    useDisclosure,
-    ModalBody,
-    ModalCloseButton,
-    Button
-} from "@chakra-ui/react"
-import store from 'store/dist/store.modern.min'
-import { Trash } from 'react-bootstrap-icons'
+import React, { useEffect } from 'react';
 
-function DeleteModal({ deleteAllFavs }) {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+import store from 'store/dist/store.modern.min';
+import { Trash } from 'react-bootstrap-icons';
 
-    const deleteAndClose = () => {
-        deleteAllFavs()
-        onClose()
-    }
+export default function DeleteModal({ deleteAllFavs }) {
+  const deleteAndClose = () => {
+    deleteAllFavs();
+    // need to add a close function and import content from state.
 
     return (
-        <>
-            <Button size="sm" backgroundColor="transparent" fontSize="sm" color="blackAlpha.500" fontWeight="bold" textTransform="uppercase" onClick={onOpen}> <Trash /> &nbsp;Remove All</Button>
+      <>
+        <button className="button" onClick={onOpen}>
+          <Trash /> &nbsp;Remove All
+        </button>
 
-            <Modal onClose={onClose} isOpen={isOpen} isCentered>
-                <ModalOverlay />
-                <ModalContent>
-                    <ModalHeader>Remove All Favorites?</ModalHeader>
-                    <ModalCloseButton />
-                    <ModalBody>
-                        Are you sure you want to remove all favorites?
-                    </ModalBody>
-                    <ModalFooter d="flex" justifyContent="space-evenly">
-                        <Button colorScheme="pink" onClick={deleteAndClose}><Trash color="white" />&nbsp; Remove All</Button>
-                        <Button onClick={onClose}> No Thanks</Button>
-                    </ModalFooter>
-                </ModalContent>
-            </Modal>
-        </>
-    )
+        <div className="modal" onClose={onClose} isOpen={isOpen} isCentered>
+          <div className="scrim" />
+          <div className="modal-content">
+            <h2>Remove All Favorites?</h2>
+            <p>Are you sure you want to remove all favorites?</p>
+            <div className="button-wrap">
+              <button className="delete-all" onClick={deleteAndClose}>
+                <Trash color="white" />
+                &nbsp; Remove All
+              </button>
+              <button onClick={onClose}> No Thanks</button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
 }
-
-export default DeleteModal

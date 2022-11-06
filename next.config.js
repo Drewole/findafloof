@@ -1,6 +1,12 @@
 module.exports = {
-    target: "serverless",
-    images: {
-        domains: ['via.placeholder.com']
-    },
-}
+  images: {
+    domains: ['via.placeholder.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.cloudfront.net',
+        pathname: '/photos/pets/**',
+      },
+    ],
+  },
+};
