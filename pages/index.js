@@ -20,7 +20,7 @@ const MotionBox = motion(Box);
 const SearchParams = store.get('searchPrefs');
 
 export default function Home({ data }) {
-  console.log('data');
+  console.log('data', data);
   const [results, setResults] = useState(data);
   const [favorites, setFavorites] = useState(null);
   const [direction, setDirection] = useState('');
@@ -158,7 +158,6 @@ export async function getStaticProps(context) {
       },
     }
   );
-  console.log('accessToken', accessToken);
   if (apiResults === null) return <Loading />;
   console.log('Just fetched');
   const json = await apiResults.json();

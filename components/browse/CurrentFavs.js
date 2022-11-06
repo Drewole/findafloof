@@ -1,8 +1,6 @@
-import { Box, Center, IconButton } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { XCircleFill } from 'react-bootstrap-icons';
 import DeleteModal from './DeleteModal';
 const CurrentFavs = ({
   setFavorites,
@@ -24,14 +22,12 @@ const CurrentFavs = ({
                 query: { id: favorite.id },
               }}
             >
-              <a>
-                <div className="image-wrapper">
-                  <Image
-                    src={favorite.primary_photo_cropped.full}
-                    objectFit="cover"
-                  />
-                </div>
-              </a>
+              <div className="image-wrapper">
+                <Image
+                  src={favorite.primary_photo_cropped.full}
+                  objectFit="cover"
+                />
+              </div>
             </Link>
 
             <div
