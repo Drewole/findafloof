@@ -36,56 +36,50 @@ const MainFluffImage = ({ current, handleChoice }) => {
   }, [direction]);
 
   return (
-    <>
-      <AnimatePresence className={styles._}>
-        {/* <motion.div
-                    key={current.primary_photo_cropped.full}
-                    initial={{ scale: .8, opacity: 0, }}
-                    animate={{ scale: 1, opacity: 1, transition: { delay: 1.2 } }}
-                    exit={{ scale: .5, opacity: 0 }}
-                > */}
-        <div className="center">
-          <PassArrow
-            handleChoice={handleChoice}
-            direction={direction}
-            setDirection={setDirection}
+    <AnimatePresence>
+      <motion.div
+        className={styles._}
+        key={current.primary_photo_cropped.full}
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1, transition: { delay: 1.2 } }}
+        exit={{ scale: 0.5, opacity: 0 }}
+      >
+        <PassArrow
+          handleChoice={handleChoice}
+          direction={direction}
+          setDirection={setDirection}
+        />
+        <MotionBox
+          className={styles.fluffImage}
+          drag="x"
+          height={370}
+          width={290}
+          dragConstraints={{ left: 0, right: 0 }}
+          whileDrag={{ scale: 0.97 }}
+          elastic={{ x: 0.2, y: false }}
+          dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
+          dragMomentum={{ friction: 0.5 }}
+          onDragEnd={(e) => {
+            handleChoice(
+              checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth)
+            );
+          }}
+        >
+          <FluffPic
+            width="100%"
+            height="100%"
+            objectFit="contain"
+            src={current.primary_photo_cropped.full}
           />
-          <MotionBox
-            className={styles.fluffImage}
-            drag="x"
-            height={370}
-            width={290}
-            dragConstraints={{ left: 0, right: 0 }}
-            whileDrag={{ scale: 0.97 }}
-            elastic={{ x: 0.2, y: false }}
-            dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
-            dragMomentum={{ friction: 0.5 }}
-            onDragEnd={(e) => {
-              handleChoice(
-                checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth)
-              );
-            }}
-          >
-            <FluffPic
-              width="100%"
-              height="100%"
-              objectFit="contain"
-              src={current.primary_photo_cropped.full}
-            />
-          </MotionBox>
+        </MotionBox>
 
-          <LikeArrow
-            handleChoice={handleChoice}
-            direction={direction}
-            setDirection={setDirection}
-          />
-        </div>
-        {/* </motion.div> */}
-      </AnimatePresence>
-      {/* <MobileView>
-                <Center mb={5}><img src="swipe.svg" alt="On mobile, swipe main image left to pass, right to favorite" /></Center>
-            </MobileView> */}
-    </>
+        <LikeArrow
+          handleChoice={handleChoice}
+          direction={direction}
+          setDirection={setDirection}
+        />
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

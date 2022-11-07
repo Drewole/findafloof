@@ -74,16 +74,16 @@ export default function Home({ data }) {
   };
 
   return (
-    <div className="container">
+    <div className={styles._}>
       <Head as="h1" size="2xl" mb="2">
         <title>Find a Floof | Fun way to find your new pet.</title>
         <link rel="icon" href="/logoDog.svg" />
       </Head>
       <Header />
 
-      <div className="browse">
+      <div className={styles.browse}>
         <div>{/* <FilterForm /> */}</div>
-        <AnimatePresence>
+        <AnimatePresence className={styles.choose}>
           <MotionBox
             key={results[0] ? results[0].id : 'no results'}
             initial={{ scale: 0.8, opacity: 0, y: -100 }}
