@@ -1,24 +1,23 @@
-import { Box, Flex } from '@chakra-ui/react'
-import React from 'react'
-import { GenderMale, GenderFemale } from 'react-bootstrap-icons'
+import React from 'react';
+import { GenderMale, GenderFemale } from 'react-bootstrap-icons';
 
 const Name = (props) => {
-    return (
-        <Flex alignItems="center" flexDirection="column">
-            <Box px={3} textAlign="center" color="purple.700" fontSize="5xl" as="h2">{props.current.name}</Box>
+  return (
+    <div className="name-wrapper">
+      <h2>{props.current.name}</h2>
+      <div className="gender-wrapper">
+        {props.current.gender === 'Male' || props.current.gender === 'male' ? (
+          <>
+            <GenderMale size={25} color="RoyalBlue" /> <span>Boy</span>
+          </>
+        ) : (
+          <>
+            <GenderFemale size={25} color="Crimson" /> <span>Girl</span>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
 
-            {(props.current.gender === "Male" || props.current.gender === "male")
-                ?
-                <Flex className="male" flexDirection="row">
-                    <GenderMale size={25} color="RoyalBlue" /> <Box textTransform="uppercase" ml={2} as="span">Boy</Box>
-                </Flex>
-                :
-                <Flex className="female" flexDirection="row">
-                    <GenderFemale size={25} color="Crimson" /> <Box textTransform="uppercase" ml={2} as="span">Girl</Box>
-                </Flex>
-            }
-        </Flex>
-    )
-}
-
-export default Name
+export default Name;

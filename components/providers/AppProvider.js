@@ -1,15 +1,15 @@
 import { createContext, useContext, useState } from 'react';
 
-import { usePrevious } from '../utils/hooks';
 const AppContext = createContext({});
 
 function AppProvider({ children, content, history, location }) {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [animating, setAnimating] = useState(false);
   return (
     <AppContext.Provider
       value={{
-        modalOpen,
-        setModalOpen,
+        animating,
+        setAnimating,
       }}
     >
       {children}

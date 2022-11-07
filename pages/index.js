@@ -87,7 +87,7 @@ export default function Home({ data }) {
         <div>{/* <FilterForm /> */}</div>
         <AnimatePresence>
           <MotionBox
-            key={results[0].id}
+            key={results[0] ? results[0].id : 'no results'}
             initial={{ scale: 0.8, opacity: 0, y: -100 }}
             animate={{ scale: 1, opacity: 1, y: 0, transition: { delay: 0.5 } }}
             exit={{ scale: 0.8, opacity: 0 }}
@@ -97,7 +97,6 @@ export default function Home({ data }) {
             <Name current={results[0]} />
           </MotionBox>
         </AnimatePresence>
-
         <div className="stats-wrapper">
           <FluffStats current={results[0]} />
         </div>

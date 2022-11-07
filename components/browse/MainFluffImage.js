@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { MobileView } from 'react-device-detect';
-import { Center, Image, Box, Flex, useDisclosure } from '@chakra-ui/react';
-import { CheckLg, XLg } from 'react-bootstrap-icons';
 import {
   motion,
   useMotionValue,

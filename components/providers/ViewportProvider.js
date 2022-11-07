@@ -1,11 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { debounce } from '../utilities/helpers';
+import { debounce } from '../utils/helpers';
 
 const ViewportContext = createContext({});
-
-ViewportProvider.propTypes = {
-  children: PropTypes.node,
-};
 
 const BREAKPOINTS = {
   xsmall: 480,
