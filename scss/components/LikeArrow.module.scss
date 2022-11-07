@@ -1,0 +1,33 @@
+@import '../utils';
+
+._ {
+  background-color: $green300;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 5px solid $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-40px);
+  position: relative;
+  z-index: 2;
+  transition: transform $globalTransitionSpeed ease-out;
+
+  svg {
+    padding-top: 3px;
+    width: 25px;
+    height: 25px;
+    fill: $green700;
+  }
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1) translateX(-40px);
+    transform-origin: center;
+  }
+  &:active {
+    transition: transform 100ms ease-out;
+    transform: scale(1) translateX(-40px);
+    transform-origin: center;
+  }
+}

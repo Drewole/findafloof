@@ -15,13 +15,14 @@
       text-transform: uppercase;
       font-weight: 700;
       span {
-        transition: opacity 100ms ease-out, transform 200ms ease-out;
+        transition: opacity 100ms ease-out,
+          transform $globalTransitionSpeed ease-out;
         transform: translateY(-10px);
         padding-top: 5px;
         opacity: 0;
       }
       svg {
-        transition: fill 200ms ease-in-out;
+        transition: fill $globalTransitionSpeed ease-in-out;
         margin: 0 auto;
         fill: $purple800;
       }

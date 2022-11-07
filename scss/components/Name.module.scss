@@ -1,0 +1,18 @@
+@import '../utils';
+
+._ {
+  text-align: center;
+  h2 {
+    margin-bottom: 0;
+  }
+  .gender {
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: $gray700;
+  }
+}

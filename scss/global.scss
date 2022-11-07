@@ -8,6 +8,38 @@ body {
 a {
   text-decoration: none;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $purple800;
+  margin: 1rem;
+}
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 2.75rem;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+  text-transform: capitalize;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.75rem;
+}
 
 .gradient {
   background: linear-gradient(

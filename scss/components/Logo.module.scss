@@ -1,0 +1,9 @@
+@import '../utils';
+
+._ {
+  transition: all 150ms ease-in-out;
+  &:hover {
+    transform: translateX(5px);
+    opacity: 1;
+  }
+}

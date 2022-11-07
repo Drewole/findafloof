@@ -1,14 +1,24 @@
 //Colors
 $white: #fff;
+$gray500: #718096;
+$gray600: #4a5568;
+$gray700: #2d3748;
 $purple800: #44337a;
 $purple50: #faf5ff;
 $purple100: #ded0eb;
 $red300: #fc7676;
 $pink500: #d5408c;
 $pink900: #521c42;
+$red400: #f56565;
+$red800: #9b2c2c;
+$green300: #68d391;
+$green500: #38a169;
+$green700: #276749;
 
 $base_color: $purple100;
 
 $base_font: 'Helvetica', 'Arial', sans-serif;
 $modal_bkg_color: $purple50;
 $form_label_color: $purple800;
+
+$globalTransitionSpeed: 150ms;

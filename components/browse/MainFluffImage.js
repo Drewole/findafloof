@@ -14,6 +14,7 @@ import styles from '../../scss/components/MainFluffImage.module.scss';
 const MotionBox = motion('div');
 const MainFluffImage = ({ current, handleChoice }) => {
   const { direction, setDirection } = useState('');
+  console.log('current', current);
 
   const middleOfScreenX = (height) => {
     return height / 2;
@@ -36,50 +37,49 @@ const MainFluffImage = ({ current, handleChoice }) => {
   }, [direction]);
 
   return (
-    <AnimatePresence>
-      <motion.div
-        className={styles._}
-        key={current.primary_photo_cropped.full}
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1, transition: { delay: 1.2 } }}
-        exit={{ scale: 0.5, opacity: 0 }}
-      >
-        <PassArrow
-          handleChoice={handleChoice}
-          direction={direction}
-          setDirection={setDirection}
-        />
-        <MotionBox
-          className={styles.fluffImage}
-          drag="x"
-          height={370}
-          width={290}
-          dragConstraints={{ left: 0, right: 0 }}
-          whileDrag={{ scale: 0.97 }}
-          elastic={{ x: 0.2, y: false }}
-          dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
-          dragMomentum={{ friction: 0.5 }}
-          onDragEnd={(e) => {
-            handleChoice(
-              checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth)
-            );
-          }}
-        >
-          <FluffPic
-            width="100%"
-            height="100%"
-            objectFit="contain"
-            src={current.primary_photo_cropped.full}
-          />
-        </MotionBox>
-
-        <LikeArrow
-          handleChoice={handleChoice}
-          direction={direction}
-          setDirection={setDirection}
-        />
-      </motion.div>
-    </AnimatePresence>
+    <div className={styles._}>
+      <PassArrow
+        handleChoice={handleChoice}
+        direction={direction}
+        setDirection={setDirection}
+      />
+      <div className={styles.motionWrapper}>
+        <AnimatePresence>
+          <MotionBox
+            className={styles.fluffImage}
+            key={current.id}
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1, transition: { delay: 1.2 } }}
+            exit={{ scale: 0.5, opacity: 0 }}
+            drag="x"
+            height={370}
+            width={290}
+            dragConstraints={{ left: 0, right: 0 }}
+            whileDrag={{ scale: 0.97 }}
+            elastic={{ x: 0.2, y: false }}
+            dragTransition={{ bounceStiffness: 100, bounceDamping: 10 }}
+            dragMomentum={{ friction: 0.5 }}
+            onDragEnd={(e) => {
+              handleChoice(
+                checkWhichSide(e.pageX, e.path[e.path.length - 1].innerWidth)
+              );
+            }}
+          >
+            <FluffPic
+              width="100%"
+              height="100%"
+              objectFit="contain"
+              src={current.primary_photo_cropped.full}
+            />
+          </MotionBox>
+        </AnimatePresence>
+      </div>
+      <LikeArrow
+        handleChoice={handleChoice}
+        direction={direction}
+        setDirection={setDirection}
+      />
+    </div>
   );
 };
 
