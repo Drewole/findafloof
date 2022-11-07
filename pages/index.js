@@ -9,9 +9,7 @@ import Name from '../components/browse/Name';
 import React, { useState, useEffect } from 'react';
 import store from 'store/dist/store.modern.min';
 import { AnimatePresence, motion } from 'framer-motion';
-// import { TokenContext } from './_app';
-// import FilterForm from '../components/browse/FilterForm';
-// import { server } from '../components/utils/config';
+import styles from '../scss/pages/Home.module.scss';
 
 // 1. Create a custom motion component from Box
 const MotionBox = motion('div');

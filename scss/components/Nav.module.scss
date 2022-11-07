@@ -1,0 +1,43 @@
+@import '../utils';
+._ {
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    grid-gap: 20px;
+
+    a {
+      display: flex;
+      text-decoration: none;
+      flex-direction: column;
+      transition: all 2ms ease-in-out;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      span {
+        transition: opacity 100ms ease-out, transform 200ms ease-out;
+        transform: translateY(-10px);
+        padding-top: 5px;
+        opacity: 0;
+      }
+      svg {
+        transition: fill 200ms ease-in-out;
+        margin: 0 auto;
+        fill: $purple800;
+      }
+
+      &:hover {
+        color: $pink500;
+        span {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        svg {
+          fill: $pink500;
+        }
+      }
+    }
+  }
+  svg {
+  }
+}

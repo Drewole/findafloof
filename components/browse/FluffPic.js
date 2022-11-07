@@ -1,10 +1,11 @@
 import React from 'react';
-import Image from 'next/dist/client/image';
+import Image from 'next/image';
+import styles from '../../scss/components/FluffPic.module.scss';
 
 const FluffPic = ({ src }) => {
   return (
-    <div className="fluff-pic-wrapper">
-      <Image className="current-fluff" src={src} width={300} height={400} />
+    <div className={styles._}>
+      <Image className={styles.image} src={src} fill objectFit="cover" />
     </div>
   );
 };

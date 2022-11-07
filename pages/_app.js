@@ -19,7 +19,9 @@ function App({ Component, pageProps, router }) {
           },
         }}
       >
-        <Component {...pageProps} />
+        <main>
+          <Component {...pageProps} />
+        </main>
       </motion.div>
     </AppProvider>
   );

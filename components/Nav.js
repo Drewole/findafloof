@@ -1,10 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
 import { Heart, House, Share } from 'react-bootstrap-icons';
+import styles from '../scss/components/Nav.module.scss';
 
 const Nav = () => {
   return (
-    <nav>
+    <nav className={styles._}>
       <ul>
         <li>
           <Link href="/">

@@ -3,90 +3,12 @@
 body {
   background-color: $purple100;
   overflow-y: scroll;
+  font-family: 'Inter', sans-serif;
 }
-.logo {
-  transition: all 150ms ease-in-out;
-  &:hover {
-    transform: translateX(5px);
-    opacity: 1;
-  }
-}
-nav {
-  ul {
-    list-style: none;
-
-    a {
-      transition: all 2ms ease-in-out;
-      span {
-        transition: opacity 150ms ease-in-out;
-        opacity: 0;
-      }
-      svg {
-        transition: transform 2ms ease-in-out;
-        margin: 0 auto;
-        transform: translateY(5px);
-      }
-
-      &:hover {
-        color: $pink500;
-
-        span {
-          opacity: 1;
-        }
-        svg {
-          transform: translateY(0);
-        }
-      }
-    }
-  }
-}
-/* 
-////// Footer
-*/
-
-footer {
-  p {
-    display: flex;
-    color: $pink900;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.65rem;
-  }
-  svg {
-    color: $pink500;
-    margin: 3px 4px 0;
-  }
+a {
+  text-decoration: none;
 }
 
-.current-fluff {
-  box-shadow: inset 0 0 10px 0px rgba(255, 255, 255, 0.1);
-  outline: 8px solid rgba(255, 255, 255, 0.2);
-  outline-offset: -32px;
-  transition: all 150ms ease-in-out;
-}
-
-.chakra-collapse {
-  .gradient {
-    background: linear-gradient(
-      0deg,
-      rgba($purple50, 1) 0%,
-      rgba($purple50, 0) 83%
-    );
-    height: 0px;
-    width: 100%;
-    display: block;
-    position: relative;
-    z-index: 2;
-    margin-top: -45px;
-  }
-}
-.chakra-collapse.closed {
-  position: relative;
-  margin-bottom: 0;
-  .gradient {
-    height: 0px;
-  }
-}
 .gradient {
   background: linear-gradient(
     0deg,

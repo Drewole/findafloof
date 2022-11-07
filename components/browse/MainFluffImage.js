@@ -9,6 +9,7 @@ import {
 import LikeArrow from '../LikeArrow';
 import PassArrow from '../PassArrow';
 import FluffPic from './FluffPic';
+import styles from '../../scss/components/MainFluffImage.module.scss';
 
 const MotionBox = motion('div');
 const MainFluffImage = ({ current, handleChoice }) => {
@@ -36,7 +37,7 @@ const MainFluffImage = ({ current, handleChoice }) => {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence className={styles._}>
         {/* <motion.div
                     key={current.primary_photo_cropped.full}
                     initial={{ scale: .8, opacity: 0, }}
@@ -50,9 +51,10 @@ const MainFluffImage = ({ current, handleChoice }) => {
             setDirection={setDirection}
           />
           <MotionBox
+            className={styles.fluffImage}
             drag="x"
-            minHeight={370}
-            minWidth={290}
+            height={370}
+            width={290}
             dragConstraints={{ left: 0, right: 0 }}
             whileDrag={{ scale: 0.97 }}
             elastic={{ x: 0.2, y: false }}
@@ -64,7 +66,12 @@ const MainFluffImage = ({ current, handleChoice }) => {
               );
             }}
           >
-            <FluffPic src={current.primary_photo_cropped.full} />
+            <FluffPic
+              width="100%"
+              height="100%"
+              objectFit="contain"
+              src={current.primary_photo_cropped.full}
+            />
           </MotionBox>
 
           <LikeArrow

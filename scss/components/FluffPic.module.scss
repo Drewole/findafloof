@@ -1,0 +1,16 @@
+@import '../utils';
+
+._ {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 30px;
+  box-shadow: 5px 0 30px 0px hsla(0, 0%, 0%, 0.2);
+
+  img {
+    outline: 12px solid hsla(0, 0%, 100%, 0.3);
+    outline-offset: -12px;
+    border-radius: 30px;
+  }
+}

@@ -25,7 +25,8 @@ const CurrentFavs = ({
               <div className="image-wrapper">
                 <Image
                   src={favorite.primary_photo_cropped.full}
-                  objectFit="cover"
+                  width={200}
+                  height={200}
                 />
               </div>
             </Link>
