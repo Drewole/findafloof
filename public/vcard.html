@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drew Olsen — Contact Card</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #242132;
+        --card: #2c2940;
+        --card-border: rgba(255, 255, 255, 0.08);
+        --accent: #fc4348;
+        --accent-dark: #d93539;
+        --accent-glow: rgba(252, 67, 72, 0.15);
+        --teal: #44a69d;
+        --teal-glow: rgba(68, 166, 157, 0.15);
+        --text: #e8e4dd;
+        --text-muted: #8a8699;
+        --serif: "Montserrat", sans-serif;
+        --sans: "Montserrat", sans-serif;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        overflow: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: -40%;
+        left: -20%;
+        width: 80vw;
+        height: 80vw;
+        background: radial-gradient(
+          circle,
+          rgba(252, 67, 72, 0.06) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        bottom: -30%;
+        right: -20%;
+        width: 70vw;
+        height: 70vw;
+        background: radial-gradient(
+          circle,
+          rgba(68, 166, 157, 0.05) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+        background: var(--card);
+        border: 1px solid var(--card-border);
+        border-radius: 24px;
+        width: 100%;
+        max-width: 420px;
+        padding: 48px 36px 36px;
+        text-align: center;
+        box-shadow:
+          0 4px 60px rgba(0, 0, 0, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+        animation: cardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        animation: avatarIn 0.6s 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      @keyframes avatarIn {
+        from {
+          opacity: 0;
+          transform: scale(0.7);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .name {
+        font-family: var(--sans);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 4px;
+        animation: fadeUp 0.5s 0.3s both;
+      }
+
+      .title-text {
+        color: var(--teal);
+        font-weight: 400;
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 28px;
+        animation: fadeUp 0.5s 0.4s both;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--card-border),
+          var(--teal-glow),
+          var(--card-border),
+          transparent
+        );
+        margin-bottom: 24px;
+        animation: fadeUp 0.5s 0.45s both;
+      }
+
+      .info-list {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 32px;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        animation: fadeUp 0.5s both;
+      }
+      .info-item:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      .info-item:nth-child(2) {
+        animation-delay: 0.55s;
+      }
+      .info-item:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .info-item:nth-child(4) {
+        animation-delay: 0.65s;
+      }
+      .info-item:last-child {
+        border-bottom: none;
+      }
+
+      .info-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(68, 166, 157, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .info-icon svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--teal);
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .info-label {
+        font-size: 11px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 2px;
+      }
+
+      .info-value {
+        font-size: 15px;
+        font-weight: 400;
+        color: var(--text);
+      }
+
+      .info-value a {
+        color: var(--text);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .info-value a:hover {
+        color: var(--teal);
+      }
+
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, var(--accent), #d93539);
+        color: var(--bg);
+        font-family: var(--sans);
+        font-weight: 600;
+        font-size: 15px;
+        border: none;
+        border-radius: 14px;
+        padding: 16px 32px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 20px rgba(252, 67, 72, 0.25);
+        width: 100%;
+        justify-content: center;
+        animation: fadeUp 0.5s 0.75s both;
+        text-decoration: none;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(252, 67, 72, 0.35);
+      }
+      .download-btn:active {
+        transform: translateY(0);
+      }
+
+      .download-btn svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--bg);
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .footer-note {
+        margin-top: 20px;
+        font-size: 12px;
+        color: var(--text-muted);
+        animation: fadeUp 0.5s 0.85s both;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        background: var(--card);
+        border: 1px solid var(--accent);
+        color: var(--text);
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-family: var(--sans);
+        font-size: 14px;
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+        z-index: 100;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="avatar">
+        <img
+          src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgNDk2IDU1NCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxuczpzZXJpZj0iaHR0cDovL3d3dy5zZXJpZi5jb20vIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjI7Ij4KICAgIDxnIGlkPSJMYXllci0yIiBzZXJpZjppZD0iTGF5ZXIgMiIgdHJhbnNmb3JtPSJtYXRyaXgoNC4xNjY2NywwLDAsNC4xNjY2NywwLDApIj4KICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLC0xLC0xLDAsODEuOTIxNCw1OS42MjI4KSI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0tMzYuOTU4LC0zNi45NThDLTU2Ljk2OCwtMzYuOTU4IC03My4xODgsLTIwLjQxMyAtNzMuMTg4LC0wLjAwMkMtNzMuMTg4LDIwLjQxMSAtNTYuOTY4LDM2Ljk1OCAtMzYuOTU4LDM2Ljk1OEMtMTYuOTUxLDM2Ljk1OCAtMC43MjgsMjAuNDExIC0wLjcyOCwtMC4wMDJDLTAuNzI4LC0yMC40MTMgLTE2Ljk1MSwtMzYuOTU4IC0zNi45NTgsLTM2Ljk1OCIgc3R5bGU9ImZpbGw6cmdiKDY0LDE2NiwxNTYpO2ZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLC0xLC0xLDAsODEuOTIxNCw3Mi44OTk4KSI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0tMjMuNjgxLC0yMy42ODNDLTM2LjUwMSwtMjMuNjgzIC00Ni44OTcsLTEzLjA3OSAtNDYuODk3LC0wLjAwMkMtNDYuODk3LDEzLjA3OCAtMzYuNTAxLDIzLjY4MSAtMjMuNjgxLDIzLjY4MUMtMTAuODYsMjMuNjgxIC0wLjQ2NywxMy4wNzggLTAuNDY3LC0wLjAwMkMtMC40NjcsLTEzLjA3OSAtMTAuODYsLTIzLjY4MyAtMjMuNjgxLC0yMy42ODMiIHN0eWxlPSJmaWxsOndoaXRlO2ZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLDczLjkxMzIsMzYuMDk5MSkiPgogICAgICAgICAgICA8cGF0aCBkPSJNMCwyMC42OTdDMCwyMC42NTMgMC4wMDMsMjAuNjA5IDAuMDAzLDIwLjU2NUMwLjAwMywyMC41MjEgMCwyMC40NzcgMCwyMC40MzNMMCwtMzYuMDk5TC0xMy4yNTgsLTM2LjA5OUwtMTMuMjU4LC03LjIzMkMtMTkuNjc0LC0xMi40OTMgLTI3LjkzNSwtMTUuNjY0IC0zNi45NTQsLTE1LjY2NEMtNTcuMzY2LC0xNS42NjQgLTczLjkxMywwLjU1NSAtNzMuOTEzLDIwLjU2NUMtNzMuOTEzLDQwLjU3NyAtNTcuMzY2LDU2Ljc5NiAtMzYuOTU0LDU2Ljc5NkMtMTYuNzMzLDU2Ljc5NiAtMC4zMTQsNDAuODc0IC0wLjAxMSwyMS4xMThMMCwyMS4xMThMMCwyMC42OTdaIiBzdHlsZT0iZmlsbDojZmM0ZTUzO2ZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgICAgIDwvZz4KICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLC0xLC0xLDAsMzYuOTU5NiwzMi45ODI1KSI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0tMjMuNjgyLC0yMy42ODFDLTM2LjUwMywtMjMuNjgxIC00Ni44OTYsLTEzLjA3OSAtNDYuODk2LDBDLTQ2Ljg5NiwxMy4wODEgLTM2LjUwMywyMy42ODIgLTIzLjY4MiwyMy42ODJDLTEwLjg2MiwyMy42ODIgLTAuNDY2LDEzLjA4MSAtMC40NjYsMEMtMC40NjYsLTEzLjA3OSAtMTAuODYyLC0yMy42ODEgLTIzLjY4MiwtMjMuNjgxIiBzdHlsZT0iZmlsbDp3aGl0ZTtmaWxsLXJ1bGU6bm9uemVybzsiLz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo="
+          alt="Drew Olsen Design Logo"
+        />
+      </div>
+      <div class="name">Drew Olsen</div>
+      <div class="title-text">Owner / Developer</div>
+      <div class="divider"></div>
+
+      <ul class="info-list">
+        <li class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-value">
+              <a href="tel:9523815559">952-381-5559</a>
+            </div>
+          </div>
+        </li>
+        <li class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-value">
+              <a href="mailto:olsenj.andrew@gmail.com"
+                >olsenj.andrew@gmail.com</a
+              >
+            </div>
+          </div>
+        </li>
+        <li class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path
+                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+              />
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Website</div>
+            <div class="info-value">
+              <a href="https://drewolsen.design" target="_blank"
+                >drewolsen.design</a
+              >
+            </div>
+          </div>
+        </li>
+        <li class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <div>
+            <div class="info-label">Location</div>
+            <div class="info-value">Minneapolis, MN</div>
+          </div>
+        </li>
+      </ul>
+
+      <button class="download-btn" onclick="downloadVCard()">
+        <svg viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" y1="15" x2="12" y2="3" />
+        </svg>
+        Save Contact
+      </button>
+
+      <div class="footer-note">Works on iPhone, Android & desktop</div>
+    </div>
+
+    <div class="toast" id="toast">Contact card downloaded!</div>
+
+    <script>
+      function downloadVCard() {
+        const vcard = [
+          "BEGIN:VCARD",
+          "VERSION:3.0",
+          "N:Olsen;Andrew;;;",
+          "FN:Drew Olsen",
+          "TITLE:Owner/Developer",
+          "TEL;TYPE=CELL:+19523815559",
+          "EMAIL;TYPE=INTERNET:olsenj.andrew@gmail.com",
+          "URL:https://drewolsen.design",
+          "ADR;TYPE=WORK:;;Minneapolis;MN;;;USA",
+          "END:VCARD",
+        ].join("\n");
+
+        const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "Drew_Olsen.vcf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2500);
+      }
+    </script>
+  </body>
+</html>
